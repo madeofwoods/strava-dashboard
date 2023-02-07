@@ -1,0 +1,28 @@
+// import CalendarMap from "../../components/CalendarMap"
+import DataTable from "../../components/DataTable"
+import DistanceMonth from "../../components/DistanceMonth"
+import DistanceYear from "../../components/DistanceYear"
+import LatestActivity from "../../components/LatestActivity"
+import NumberRunsYear from "../../components/NumberRunsYear"
+import "./Dashboard.css"
+
+export default function Dashboard() {
+  return (
+    <div className="dashboard--wrapper">
+      <div className="dashboard">
+          <NumberRunsYear />
+          <DistanceYear />
+          <DistanceMonth />
+          <LatestActivity />
+        <div className="widget widget--heatmap">
+          heatmap
+        </div>
+        <div className="widget widget--graph">graph</div>
+        <div className="widget widget--table">
+          <DataTable />
+        </div>
+        <div className="bottom--padding--grid"></div>
+      </div>
+    </div>
+  )
+}
