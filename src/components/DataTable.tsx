@@ -18,9 +18,9 @@ const rows: GridRowsProp = [
 ];
 
 const columns: GridColDef[] = [
-  { field: 'col1', headerName: 'Run', width: 150 },
-  { field: 'col2', headerName: 'Distance (km)', width: 150 },
-  { field: 'col3', headerName: 'Time', width: 100 },
+  { field: 'col1', headerName: 'Run', width: 150, headerAlign: "center", align: "center", cellClassName: "columnRun"  },
+  { field: 'col2', headerName: 'Distance (km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnDist" },
+  { field: 'col3', headerName: 'Time', width: 100, headerAlign: "center", align: "center", cellClassName: "columnTime" },
 ];
 
 

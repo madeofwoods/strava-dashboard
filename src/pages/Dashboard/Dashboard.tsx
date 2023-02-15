@@ -3,6 +3,8 @@ import DataTable from "../../components/DataTable"
 import DistanceMonth from "../../components/DistanceMonth"
 import DistanceYear from "../../components/DistanceYear"
 import LatestActivity from "../../components/LatestActivity"
+import LineGraph from "../../components/LineGraph"
+import Maps from "../../components/Maps"
 import NumberRunsYear from "../../components/NumberRunsYear"
 import "./Dashboard.css"
 
@@ -15,9 +17,11 @@ export default function Dashboard() {
           <DistanceMonth />
           <LatestActivity />
         <div className="widget widget--heatmap">
-          heatmap
+          <Maps />
         </div>
-        <div className="widget widget--graph">graph</div>
+        <div className="widget widget--graph">
+          <LineGraph />
+        </div>
         <div className="widget widget--table">
           <DataTable />
         </div>

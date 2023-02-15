@@ -8,7 +8,7 @@ const distance = latestRun.data.distance
 const distanceInKm = (distance / 1000).toFixed(2)
 const speed = time * 1000 / (distance)
 
-const secondsToMins = (time:number):string => {
+export const secondsToMins = (time:number):string => {
     const timeRounded = Math.round(time)
     const mins = String(Math.floor(time / 60))
     const seconds = String(timeRounded % 60).padStart(2, "0")
