@@ -23,7 +23,7 @@ export default function Dashboard() {
           <LineGraph />
         </div>
         <div className="widget widget--table">
-          <DataTable />
+          <DataTable height={"100%"} width={"100%"}/>
         </div>
         <div className="bottom--padding--grid"></div>
       </div>

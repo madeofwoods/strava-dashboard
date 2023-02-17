@@ -9,6 +9,7 @@ body{
   font-family: 'Nunito', sans-serif;
 }
 
+
 .main--app {
   display: flex;
   background-color: #1f274b;
@@ -18,6 +19,9 @@ body{
 
 .main--content {
   /* padding: 25px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 9;
   height: 100vh;
   width: 100%;
@@ -71,8 +75,9 @@ gap: 40px;
   width: 100%;
   height: 60px;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
   /* gap: 20px; */
-
 }
 
 .sidebar--link {
@@ -95,4 +100,58 @@ gap: 40px;
 .sidebar--link:hover, .middle--text:hover {
   background-color: #2f3b69;
   color:#a4a4e3;;
+}
+
+.router--link {
+  text-decoration: none;
+  color: white;
+}
+
+
+/* MAP */
+
+
+#map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeInLeaflet {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.leaflet-tile-pane {
+  /* background-color: black; */
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(0%);
+}
+
+.leaflet-tile-container img {
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+  filter:invert(3%);
+}
+
+a.leaflet-control-zoom-in, a.leaflet-control-zoom-out { 
+  background-color: #10162f;
+  color:#a4a4e3; 
+  border: none;
+}
+
+a.leaflet-control-zoom-in:hover, a.leaflet-control-zoom-out:hover {
+  background-color: #1d274f;
+}
+
+.leaflet-container {
+  height: 80%;
+  width: 90%;
+  animation: fadeInLeaflet 3.5s ease forwards;
+}
+
+.leaflet-control-attribution.leaflet-control{
+  display: none;
+  background-color: #10162f;
+  text-decoration: none;
+  color: white;
 }

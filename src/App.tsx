@@ -5,6 +5,10 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import './App.css'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Sidebar from './components/Sidebar';
+import Tables from './pages/Tables/Tables';
+import LargeMap from './pages/Maps/LargeMap';
+import Graphs from './pages/Graphs/Graphs';
+import Grid from './pages/Grid/Grid';
 
 const Layout = () => {
   return (
@@ -29,6 +33,22 @@ const router = createBrowserRouter([
       {
         path: "/dash",
         element: <Dashboard />
+      },
+      {
+        path: "/tables",
+        element: <Tables />
+      },
+      {
+        path: "/maps",
+        element: <LargeMap />
+      },
+      {
+        path: "/graphs",
+        element: <Graphs />
+      },
+      {
+        path: "/grid",
+        element: <Grid />
       },
     ]
   },

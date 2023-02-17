@@ -23,13 +23,15 @@ const columns: GridColDef[] = [
   { field: 'col3', headerName: 'Time', width: 100, headerAlign: "center", align: "center", cellClassName: "columnTime" },
 ];
 
+interface Props {
+  height: string,
+  width: string,
+}
 
-export default function DataTable() {
+export default function DataTable({height, width}: Props) {
   return (
-    <div>
-        <div style={{ height: "600px", width: '100%', padding: "20px" }}>
-        <DataGrid rows={rows} columns={columns} sx={{color: "lightblue", backgroundColor:"#0d0c23", border: "none"}} />
+        <div style={{ height: height, width: width, padding: "20px" }}>
+          <DataGrid rows={rows} columns={columns} sx={{color: "lightblue", backgroundColor:"#0d0c23", border: "none"}} />
         </div>
-    </div>
   )
 }
