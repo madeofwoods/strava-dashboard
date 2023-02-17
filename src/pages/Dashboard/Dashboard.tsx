@@ -17,10 +17,10 @@ export default function Dashboard() {
           <DistanceMonth />
           <LatestActivity />
         <div className="widget widget--heatmap">
-          <Maps />
+          <Maps zoom={12} />
         </div>
         <div className="widget widget--graph">
-          <LineGraph />
+            <LineGraph />
         </div>
         <div className="widget widget--table">
           <DataTable height={"100%"} width={"100%"}/>

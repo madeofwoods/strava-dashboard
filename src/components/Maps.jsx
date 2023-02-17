@@ -13,10 +13,10 @@ const poly = polyline.decode(polylines[0])
 // const poly2 = polyline
 console.log(poly)
 
-export default function Maps() {
+export default function Maps({zoom}) {
   return (
     <div id="map" style={{width:"100%", height:"100%"}} >
-        <MapContainer center={[52.51745, 13.43845]} zoom={12} scrollWheelZoom={true}>
+        <MapContainer center={[52.51745, 13.43845]} zoom={zoom} scrollWheelZoom={true}>
         <TileLayer
             // attribution= 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
             url='https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png'

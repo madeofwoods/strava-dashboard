@@ -42,7 +42,13 @@
     grid-column: 3/5;
     grid-row: 3/4;
     overflow: scroll;
+
+    /* padding: 30px; */
+    /* justify-content: center; */
+    background-color: #1e1e28;
 }
+
+
 
 .widget--table {
     grid-column: 1/3;

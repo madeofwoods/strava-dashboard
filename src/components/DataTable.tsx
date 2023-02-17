@@ -1,5 +1,37 @@
 import data from "../assets/data.json"
+import moment from "moment";
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { secondsToMins } from "./LatestActivity";
+
+const time = 300
+const secsToMins = (seconds:number):string => {
+  const duration = moment.duration(seconds, "seconds")
+  const format = `${duration.minutes()}:${String(duration.seconds()).padStart(2, "0")}`
+  return format
+}
+console.log(secsToMins(time))
+
+const tableRows: GridRowsProp = data.map((data, index) => (
+  {
+    id: index, 
+    name: data.data.name, 
+    distance: (data.data.distance/1000).toFixed(2), 
+    time: secsToMins(data.data.moving_time), 
+    speed: secondsToMins(data.data.moving_time*1000/data.data.distance),
+    oneKm: secondsToMins(data.data.best_efforts[2].elapsed_time), 
+    fiveKm: data.data.best_efforts[5] ? secondsToMins(data.data.best_efforts[5].elapsed_time) : null,
+    tenKm: data.data.best_efforts[6] ? secondsToMins(data.data.best_efforts[6].elapsed_time) : null,}))
+
+const tableCols: GridColDef[] = [
+  { field: 'name', headerName: 'Run', width: 150, headerAlign: "center", align: "center", cellClassName: "columnRun"  },
+  { field: 'distance', headerName: 'Distance (km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnDist" },
+  { field: 'time', headerName: 'Time', width: 100, headerAlign: "center", align: "center", cellClassName: "columnTime" },
+  { field: 'speed', headerName: 'Av. Speed (min/km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnTime" },
+  { field: 'oneKm', headerName: 'Fastest 1km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnOneKm" },
+  { field: 'fiveKm', headerName: 'Fastest 5km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnFiveKm" },
+  { field: 'tenKm', headerName: 'Fastest 10km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnFiveKm" },
+];
+console.log(tableRows)
 
 const rows: GridRowsProp = [
   { id: 1, col1: 'Evening', col2: '5.25', col3: "27:32" },
@@ -31,7 +63,7 @@ interface Props {
 export default function DataTable({height, width}: Props) {
   return (
         <div style={{ height: height, width: width, padding: "20px" }}>
-          <DataGrid rows={rows} columns={columns} sx={{color: "lightblue", backgroundColor:"#0d0c23", border: "none"}} />
+          <DataGrid rows={tableRows} columns={tableCols} sx={{color: "lightblue", backgroundColor:"#0d0c23", border: "none"}} />
         </div>
   )
 }
