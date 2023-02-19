@@ -9,7 +9,7 @@ import NumberRunsYear from "../../components/NumberRunsYear";
 import data from "../../assets/data.json";
 import "./Dashboard.css";
 
-export default function Dashboard() {
+export default function DemoDash() {
   return (
     <div className="dashboard--wrapper">
       <div className="dashboard">

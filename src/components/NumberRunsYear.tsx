@@ -1,12 +1,13 @@
 
-import data from "../assets/data.json"
 
-const dataThisYear = data.filter(run => run.data.start_date.slice(0, 4) == "2023")
+interface RunProps {
+  data: any[]
+}
 
-const totalRuns = dataThisYear.length
-console.log(totalRuns)
+export default function NumberRunsYear({data}: RunProps) {
+  const dataThisYear = data.filter(run => run.data.start_date.slice(0, 4) == "2023")
+  const totalRuns = dataThisYear.length
 
-export default function NumberRunsYear() {
   return (
     <div className="widget widget--square">
         <div className="small--widget">

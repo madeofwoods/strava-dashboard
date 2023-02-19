@@ -1,31 +1,34 @@
+import { getMonth } from "../utils/TimeFunctions";
 
-import data from "../assets/data.json"
+const [month, monthNumeric] = getMonth();
 
+const getTotalMonthlyDistance = (data: any[]): string => {
+  const distances = data.map((data) => data.data.distance);
+  const meters = Math.round(distances.reduce((a, b) => a + b, 0));
+  const km = (meters / 1000).toFixed(2);
 
-const date = new Date()
+  return km;
+};
 
-const monthNumeric = String(date.getMonth()+1).padStart(2, "0")
-const month = date.toLocaleString('default', { month: 'long' })
-
-const dataThisMonth = data.filter(run => run.data.start_date.slice(0, 7) == `2023-${monthNumeric}`)
-
-const getTotalDistance = ():string => {
-    const distances = dataThisMonth.map((data) => data.data.distance)
-    const meters = Math.round(distances.reduce((a,b) => a + b, 0))
-    const km = (meters / 1000).toFixed(2)
-
-    return km
+interface MonthProps {
+  data: any[];
 }
 
-export default function DistanceMonth() {
+export default function DistanceMonth({ data }: MonthProps) {
+  const dataThisMonth = data.filter(
+    (run) => run.data.start_date.slice(0, 7) == `2023-${monthNumeric}`
+  );
+
   return (
     <div className="widget widget--square">
-        <div className="small--widget">
-            <div className="small--widget--title">Distance in {month} (km)</div>
-            <div className="small--widget--number">
-                <div className="large--number">{getTotalDistance()}</div>
-            </div>
+      <div className="small--widget">
+        <div className="small--widget--title">Distance in {month} (km)</div>
+        <div className="small--widget--number">
+          <div className="large--number">
+            {getTotalMonthlyDistance(dataThisMonth)}
+          </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }

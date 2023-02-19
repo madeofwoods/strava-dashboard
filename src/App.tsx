@@ -9,6 +9,8 @@ import Tables from './pages/Tables/Tables';
 import LargeMap from './pages/Maps/LargeMap';
 import Graphs from './pages/Graphs/Graphs';
 import Grid from './pages/Grid/Grid';
+import DemoDash from './pages/Dashboard/DemoDash';
+import Upload from './pages/Upload/Upload';
 
 const Layout = () => {
   return (
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
       {
         path: "/grid",
         element: <Grid />
+      },
+      {
+        path: "/demo",
+        element: <DemoDash />
+      },
+      {
+        path: "/upload/*",
+        element: <Upload />
       },
     ]
   },
