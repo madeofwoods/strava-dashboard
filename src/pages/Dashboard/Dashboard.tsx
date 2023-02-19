@@ -6,7 +6,10 @@ import LatestActivity from "../../components/LatestActivity"
 import LineGraph from "../../components/LineGraph"
 import Maps from "../../components/Maps"
 import NumberRunsYear from "../../components/NumberRunsYear"
+import data from "../../assets/data.json"
 import "./Dashboard.css"
+
+
 
 export default function Dashboard() {
   return (
@@ -23,7 +26,7 @@ export default function Dashboard() {
             <LineGraph />
         </div>
         <div className="widget widget--table">
-          <DataTable height={"100%"} width={"100%"}/>
+          <DataTable height={"100%"} width={"100%"} data={data}/>
         </div>
         <div className="bottom--padding--grid"></div>
       </div>

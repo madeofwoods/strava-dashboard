@@ -1,11 +1,12 @@
 import "./Tables.css"
+import data from "../../assets/data.json"
 
 import DataTable from "../../components/DataTable"
 
 export default function Tables() {
   return (
     <div className="data--table widget">
-        <DataTable height={"100%"} width={"95%"}/>
+        <DataTable height={"100%"} width={"95%"} data={data}/>
     </div>
   )
 }

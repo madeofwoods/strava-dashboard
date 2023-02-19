@@ -1,66 +1,49 @@
-import data from "../assets/data.json"
-import moment from "moment";
+
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import { secondsToMins } from "./LatestActivity";
+import { useEffect, useState } from 'react';
+import { secsToMins } from "../utils/TimeFunctions";
 
-const time = 300
-const secsToMins = (seconds:number):string => {
-  const duration = moment.duration(seconds, "seconds")
-  const format = `${duration.minutes()}:${String(duration.seconds()).padStart(2, "0")}`
-  return format
+// Remember to memoise -- DataGrid is rendering 4 times on first load (8 with strict)
+
+interface DataProps {
+  data: {name: string, distance: number, moving_time: number, best_efforts: {elapsed_time: number}[]}
 }
-console.log(secsToMins(time))
-
-const tableRows: GridRowsProp = data.map((data, index) => (
-  {
-    id: index, 
-    name: data.data.name, 
-    distance: (data.data.distance/1000).toFixed(2), 
-    time: secsToMins(data.data.moving_time), 
-    speed: secondsToMins(data.data.moving_time*1000/data.data.distance),
-    oneKm: secondsToMins(data.data.best_efforts[2].elapsed_time), 
-    fiveKm: data.data.best_efforts[5] ? secondsToMins(data.data.best_efforts[5].elapsed_time) : null,
-    tenKm: data.data.best_efforts[6] ? secondsToMins(data.data.best_efforts[6].elapsed_time) : null,}))
-
-const tableCols: GridColDef[] = [
-  { field: 'name', headerName: 'Run', width: 150, headerAlign: "center", align: "center", cellClassName: "columnRun"  },
-  { field: 'distance', headerName: 'Distance (km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnDist" },
-  { field: 'time', headerName: 'Time', width: 100, headerAlign: "center", align: "center", cellClassName: "columnTime" },
-  { field: 'speed', headerName: 'Av. Speed (min/km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnTime" },
-  { field: 'oneKm', headerName: 'Fastest 1km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnOneKm" },
-  { field: 'fiveKm', headerName: 'Fastest 5km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnFiveKm" },
-  { field: 'tenKm', headerName: 'Fastest 10km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnFiveKm" },
-];
-console.log(tableRows)
-
-const rows: GridRowsProp = [
-  { id: 1, col1: 'Evening', col2: '5.25', col3: "27:32" },
-  { id: 2, col1: 'Easy Run', col2: '8.41', col3: "41:32" },
-  { id: 3, col1: 'With Kira', col2: '12.32', col3: "59:32" },
-  { id: 4, col1: 'Evening', col2: '5.25', col3: "27:32" },
-  { id: 5, col1: 'Easy Run', col2: '8.41', col3: "41:32" },
-  { id: 6, col1: 'With Kira', col2: '12.32', col3: "59:32" },
-  { id: 7, col1: 'Evening', col2: '5.25', col3: "27:32" },
-  { id: 8, col1: 'Easy Run', col2: '8.41', col3: "41:32" },
-  { id: 9, col1: 'With Kira', col2: '12.32', col3: "59:32" },
-  { id: 10, col1: 'With Pedro', col2: '12.32', col3: "59:32" },
-  { id: 11, col1: 'Evening', col2: '5.25', col3: "27:32" },
-  { id: 12, col1: 'Easy Run', col2: '8.41', col3: "41:32" },
-  { id: 13, col1: 'With Kira', col2: '12.32', col3: "59:32" },
-];
-
-const columns: GridColDef[] = [
-  { field: 'col1', headerName: 'Run', width: 150, headerAlign: "center", align: "center", cellClassName: "columnRun"  },
-  { field: 'col2', headerName: 'Distance (km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnDist" },
-  { field: 'col3', headerName: 'Time', width: 100, headerAlign: "center", align: "center", cellClassName: "columnTime" },
-];
 
 interface Props {
   height: string,
   width: string,
+  data: DataProps[]
 }
 
-export default function DataTable({height, width}: Props) {
+export default function DataTable({height, width, data}: Props) {
+  const [tableData, setTableData] = useState<DataProps[] | []>([])
+  
+  useEffect(() => {
+    setTableData(data)
+    
+  }, [data])
+
+  const tableRows: GridRowsProp = tableData?.map((data, index) => (
+    {
+      id: index, 
+      name: data?.data?.name, 
+      distance: (data.data.distance/1000).toFixed(2), 
+      time: secsToMins(data.data.moving_time), 
+      speed: secsToMins(data.data.moving_time*1000/data.data.distance),
+      oneKm: secsToMins(data.data.best_efforts[2].elapsed_time), 
+      fiveKm: data.data.best_efforts[5] ? secsToMins(data.data.best_efforts[5].elapsed_time) : null,
+      tenKm: data.data.best_efforts[6] ? secsToMins(data.data.best_efforts[6].elapsed_time) : null,}))
+  
+  const tableCols: GridColDef[] = [
+    { field: 'name', headerName: 'Run', width: 150, headerAlign: "center", align: "center", cellClassName: "columnRun"  },
+    { field: 'distance', headerName: 'Distance (km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnDist" },
+    { field: 'time', headerName: 'Time', width: 100, headerAlign: "center", align: "center", cellClassName: "columnTime" },
+    { field: 'speed', headerName: 'Av. Speed (min/km)', width: 150, headerAlign: "center", align: "center", cellClassName: "columnTime" },
+    { field: 'oneKm', headerName: 'Fastest 1km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnOneKm" },
+    { field: 'fiveKm', headerName: 'Fastest 5km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnFiveKm" },
+    { field: 'tenKm', headerName: 'Fastest 10km', width: 150, headerAlign: "center", align: "center", cellClassName: "columnFiveKm" },
+  ];
+
   return (
         <div style={{ height: height, width: width, padding: "20px" }}>
           <DataGrid rows={tableRows} columns={tableCols} sx={{color: "lightblue", backgroundColor:"#0d0c23", border: "none"}} />
