@@ -3,6 +3,8 @@ import CalendarViewMonthOutlinedIcon from "@mui/icons-material/CalendarViewMonth
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { DataContext } from "../context/DataContextProvider"
 
 
   const clientId: string  = import.meta.env.VITE_CLIENT_ID;
@@ -15,13 +17,18 @@ import { Link } from "react-router-dom";
 
 
 export default function Sidebar() {
+  const [data, setData] = useContext(DataContext)
+  useEffect(() => {
+    setData("James")
+  }, [])
+
   return (
     <div className="sidebar">
       <div className="sidebar--top">
         <Link to={"/dash"} className="router--link">
           <h2 className="sidebar--title">Dash</h2>
         </Link>
-        <div className="sidebar--name">Matt Woods</div>
+        <div className="sidebar--name">{data}</div>
         <hr className="sidebar--hr" />
       </div>
       <div className="sidebar--middle">
