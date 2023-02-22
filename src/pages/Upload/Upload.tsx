@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { DataContext } from "../../context/DataContextProvider";
+import jsonData from "../../assets/data.json"
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -10,13 +11,17 @@ interface Errors {
   errorMessage: string;
 }
 
+
+
 export default function Upload() {
-  const [data, setData] = useState<any>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
-//   const [error, setError] = useState<Errors>({
-//     error: false,
-//     errorMessage: "",
-//   });
+
+  const { stravaDataKey, nameKey } = useContext(DataContext)
+  const [stravaData, setStravaData] = stravaDataKey
+  const [name, setName] = nameKey
+  const numberOfRuns = 15
+
+
 
   const getAuthToken = (str: string): string => {
     return str.split("&")[1].slice(5);
@@ -27,6 +32,8 @@ export default function Upload() {
       const response = await axios.post(
         `https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&code=${authTok}&grant_type=authorization_code`
       );
+      console.log("auth response", response)
+      
       return response.data;
     } catch (error: any) {
       const message = error.message;
@@ -39,36 +46,61 @@ export default function Upload() {
     const timeNow = new Date().valueOf();
     const before = Number(String(timeNow).substring(0, 10));
 
-    //   console.log("numberstringnumber", before);
-
     try {
       const response = await axios.get(
-        `https://www.strava.com/api/v3/athlete/activities?before=${before}&after=1514764800&page=1&per_page=100`,
+        `https://www.strava.com/api/v3/athlete/activities?before=${before}&after=1514764800&page=1&per_page=${numberOfRuns}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      console.log(response);
-      return response;
+      // console.log(response);
+      return response.data;
     } catch (error: any) {
-      const message = error.message;
+      // const message = error.message;
     //   setError({ error: true, errorMessage: message });
       console.log("error getUserData", error);
     }
   };
 
+  interface DataProps {
+    data: any,
+
+  }
+
+  const getBestEffortsAll = async (userData: any[], accessToken: string) => {
+    // const array = []
+    const endpoints = []
+    for (let i = 0; i<numberOfRuns; i++) {
+        endpoints.push(`https://www.strava.com/api/v3/activities/${userData[i].id}?include_all_efforts=true`)
+        }
+        try {
+            // console.log(endpoints)
+            const response: DataProps[] = await axios.all(endpoints.map((endpoint) => axios.get(
+                endpoint,
+                { headers: { Authorization: `Bearer ${accessToken}` } }
+            )));
+
+            const getTheData = response.map(data => data.data)
+  
+            // console.log("getTheData", getTheData)
+            return getTheData
+        } catch (error) {
+            console.log("error getbestefforts", error);
+        }
+   
+}
+
   const activate = async () => {
     try {
       const stravaAuthToken: string = getAuthToken(location.search);
       const tokens: any = await getRefreshTokens(stravaAuthToken);
+
       const accessToken: string = await tokens.access_token;
-      console.log("accessToken", accessToken);
+      setName(`${tokens?.athlete.firstname} ${tokens?.athlete.lastname}`)
+      // console.log("accessToken", accessToken);
       const user = await getUserData(accessToken);
-      setData(user);
+      const bestEfforts = await getBestEffortsAll(user, accessToken)
+      setStravaData(bestEfforts);
       return user;
     } catch (err) {
-    //   setError({
-    //     error: true,
-    //     errorMessage: "Problem Loading Data. Please Retry",
-    //   });
       console.log("err activate", err);
     }
   };
@@ -77,10 +109,9 @@ export default function Upload() {
   }, []);
 
   useEffect(() => {
-    data && setLoaded(true);
-  }, [data]);
+    stravaData && setLoaded(true);
+  }, [stravaData]);
 
-  console.log("Strava Data", data);
   return (
     <div>
       <div>

@@ -6,8 +6,8 @@ interface LatestProps {
 export default function LatestActivity({ data }: LatestProps) {
   const latestRun = data[0];
 
-  const time = latestRun.data.moving_time;
-  const distance = latestRun.data.distance;
+  const time = latestRun.moving_time;
+  const distance = latestRun.distance;
 
   const distanceInKm = (distance / 1000).toFixed(2);
   const speed = (time * 1000) / distance;

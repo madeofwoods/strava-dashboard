@@ -5,7 +5,7 @@ interface RunProps {
 }
 
 export default function NumberRunsYear({data}: RunProps) {
-  const dataThisYear = data.filter(run => run.data.start_date.slice(0, 4) == "2023")
+  const dataThisYear = data.filter(run => run.start_date.slice(0, 4) == "2023")
   const totalRuns = dataThisYear.length
 
   return (

@@ -5,22 +5,21 @@ import { secsToMins } from "../utils/TimeFunctions";
 // Remember to memoise -- DataGrid is rendering 4 times on first load (8 with strict)
 
 interface DataProps {
-  data: {
-    name: string;
-    distance: number;
-    moving_time: number;
-    best_efforts: { elapsed_time: number }[];
-  };
+    name: string,
+    distance: number,
+    moving_time: number,
+    best_efforts: { elapsed_time: number }[],
+  
 }
 
 interface Props {
   height: string;
   width: string;
-  data: DataProps[];
+  data: any[];
 }
 
 export default function DataTable({ height, width, data }: Props) {
-  const [tableData, setTableData] = useState<DataProps[] | []>([]);
+  const [tableData, setTableData] = useState<any[]>([]);
 
   useEffect(() => {
     setTableData(data);
@@ -28,16 +27,16 @@ export default function DataTable({ height, width, data }: Props) {
 
   const tableRows: GridRowsProp = tableData?.map((data, index) => ({
     id: index,
-    name: data?.data?.name,
-    distance: (data.data.distance / 1000).toFixed(2),
-    time: secsToMins(data.data.moving_time),
-    speed: secsToMins((data.data.moving_time * 1000) / data.data.distance),
-    oneKm: secsToMins(data.data.best_efforts[2].elapsed_time),
-    fiveKm: data.data.best_efforts[5]
-      ? secsToMins(data.data.best_efforts[5].elapsed_time)
+    name: data?.name,
+    distance: (data.distance / 1000).toFixed(2),
+    time: secsToMins(data.moving_time),
+    speed: secsToMins((data.moving_time * 1000) / data.distance),
+    oneKm: secsToMins(data.best_efforts[2].elapsed_time),
+    fiveKm: data.best_efforts[5]
+      ? secsToMins(data.best_efforts[5].elapsed_time)
       : null,
-    tenKm: data.data.best_efforts[6]
-      ? secsToMins(data.data.best_efforts[6].elapsed_time)
+    tenKm: data.best_efforts[6]
+      ? secsToMins(data.best_efforts[6].elapsed_time)
       : null,
   }));
 

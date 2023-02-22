@@ -6,7 +6,8 @@ import LatestActivity from "../../components/LatestActivity";
 import LineGraph from "../../components/LineGraph";
 import Maps from "../../components/Maps";
 import NumberRunsYear from "../../components/NumberRunsYear";
-import data from "../../assets/data.json";
+// import data from "../../assets/data.json";
+import data from "../../assets/data.json"
 import "./Dashboard.css";
 
 export default function DemoDash() {

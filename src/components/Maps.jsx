@@ -1,18 +1,21 @@
 
 import { MapContainer, TileLayer, Popup, Polyline } from 'react-leaflet'
 import polyline from '@mapbox/polyline'
+import { useEffect } from 'react'
 
 
 const getPolylines = (data) => {
-  const polylines = data.map(data => data.data.map.polyline)
+  const polylines = data.map(data => data.map.polyline)
   const polys = polylines.map(poly => polyline.decode(poly))
   return polys
 }
 
 
 export default function Maps({data, zoom}) {
-
   const mapPolylines = getPolylines(data)
+
+
+
 
   return (
     <div id="map" style={{width:"100%", height:"100%"}} >

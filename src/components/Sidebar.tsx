@@ -17,27 +17,30 @@ import { DataContext } from "../context/DataContextProvider"
 
 
 export default function Sidebar() {
-  const [data, setData] = useContext(DataContext)
+  const { nameKey, stravaDataKey } = useContext(DataContext)
+  const [name, setName] = nameKey
+  const [data] = stravaDataKey
   useEffect(() => {
-    setData("James")
+    setName("James")
   }, [])
 
   return (
     <div className="sidebar">
       <div className="sidebar--top">
-        <Link to={"/dash"} className="router--link">
+        <Link to={data.length > 0 ? "/dash" : "/demo"} className="router--link">
           <h2 className="sidebar--title">Dash</h2>
         </Link>
-        <div className="sidebar--name">{data}</div>
+        <div className="sidebar--name">{name}</div>
         <hr className="sidebar--hr" />
       </div>
       <div className="sidebar--middle">
         <Link to={"/"} className="router--link">
           <div className="middle--text">Home</div>
         </Link>
+        {data.length > 0 && 
         <Link to={"/dash"} className="router--link">
           <div className="middle--text">Dashboard</div>
-        </Link>
+        </Link>}
         <div onClick={handleLogin} className="middle--text">Upload</div>
        
         <Link to={"/demo"} className="router--link">

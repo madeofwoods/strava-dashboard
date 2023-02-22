@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 const getRunData = (data: any[], distance: string, position: number) => {
 
-  const runData = data.filter(data => data.data.best_efforts.length > position).map((data) => ({ name: new Date(data.data.start_date), [distance]: data.data.best_efforts[position]?.elapsed_time })).reverse()
+  const runData = data.filter(data => data.best_efforts.length > position).map((data) => ({ name: new Date(data.start_date), [distance]: data.best_efforts[position]?.moving_time })).reverse()
   return runData
 }
 
@@ -25,11 +25,9 @@ export default function LineGraph({data, distance, position, minmax, label, widt
   const [graphData, setGraphData] = useState<any[]>(getRunData(data, distance, 2))
 
   
-  console.log("data", data)
 
   useEffect(() => {
     setGraphData(getRunData(data, distance, position))
-    // console.log(graphData)
   }, [data])
 
   return (

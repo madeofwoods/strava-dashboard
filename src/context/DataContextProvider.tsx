@@ -9,9 +9,14 @@ interface ContextProps {
 export const DataContext = createContext<any | null>(null)
 
 export default function DataContextProvider({children}:ContextProps) {
-    const [data, setData] = useState<any>("Matt")
+    const [name, setName] = useState<any>("Matt")
+    const [stravaData, setStravaData] = useState<any>([])
+    const store = {
+        nameKey: [name, setName],
+        stravaDataKey: [stravaData, setStravaData]
+    }
     return (
-        <DataContext.Provider value={[data, setData]}>
+        <DataContext.Provider value={store}>
         {children}
         </DataContext.Provider>
 

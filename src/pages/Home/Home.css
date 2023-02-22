@@ -8,6 +8,11 @@
     /* border-bottom: 1px solid white; */
 }
 
+.input--name::placeholder {
+    opacity: 1;
+    color: rgb(228, 148, 148);
+}
+
 .input--name:hover {
 
     color: #d37373;
