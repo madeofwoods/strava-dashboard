@@ -12,6 +12,7 @@ import Grid from "./pages/Grid/Grid";
 import DemoDash from "./pages/Dashboard/DemoDash";
 import Upload from "./pages/Upload/Upload";
 import DataContextProvider from "./context/DataContextProvider";
+import Navbar from "./components/Navbar/Navbar";
 
 
 const Layout = () => {
@@ -20,7 +21,10 @@ const Layout = () => {
       <div className="main--app">
         <Sidebar />
         <div className="main--content">
+          <Navbar />
+          <div className="main--content--container">
           <Outlet />
+          </div>
         </div>
       </div>
     </DataContextProvider>

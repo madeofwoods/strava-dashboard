@@ -1,16 +1,22 @@
+import { useContext } from "react";
+import { DataContext } from "../context/DataContextProvider";
 import { secsToMins } from "../utils/TimeFunctions";
 
 interface LatestProps {
   data: any[];
 }
 export default function LatestActivity({ data }: LatestProps) {
+  const {toggle, unitsKey} = useContext(DataContext)
+  const [kmToggle] = toggle
+  const units = unitsKey
   const latestRun = data[0];
 
   const time = latestRun.moving_time;
   const distance = latestRun.distance;
+  const divisor = kmToggle ? 1000 : 1609.34
 
-  const distanceInKm = (distance / 1000).toFixed(2);
-  const speed = (time * 1000) / distance;
+  const distanceInKm = (distance / divisor).toFixed(2);
+  const speed = (time * divisor) / distance;
 
   return (
     <div className="widget widget--square">

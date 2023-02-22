@@ -1,0 +1,17 @@
+.km--miles {
+    position: absolute; 
+    /* left: 90%; */
+    left: calc(100% - 150px);
+    /* left: 18%; */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+
+.toggle--image {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}

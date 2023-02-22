@@ -1,13 +1,16 @@
+import { useContext } from "react";
+import { DataContext } from "../context/DataContextProvider";
 import { getMonth } from "../utils/TimeFunctions";
 
 const [month, monthNumeric] = getMonth();
 
-const getTotalMonthlyDistance = (data: any[]): string => {
+const getTotalMonthlyDistance = (data: any[], kmToggle: boolean): string => {
   const distances = data.map((data) => data.distance);
   const meters = Math.round(distances.reduce((a, b) => a + b, 0));
-  const km = (meters / 1000).toFixed(2);
+  const divisor = kmToggle ? 1000 : 1609.34
+  const dist = (meters / divisor).toFixed(2);
 
-  return km;
+  return dist;
 };
 
 interface MonthProps {
@@ -15,6 +18,10 @@ interface MonthProps {
 }
 
 export default function DistanceMonth({ data }: MonthProps) {
+  const {toggle, unitsKey} = useContext(DataContext)
+  const [kmToggle] = toggle
+  const units = unitsKey
+
   const dataThisMonth = data.filter(
     (run) => run.start_date.slice(0, 7) == `2023-${monthNumeric}`
   );
@@ -22,10 +29,10 @@ export default function DistanceMonth({ data }: MonthProps) {
   return (
     <div className="widget widget--square">
       <div className="small--widget">
-        <div className="small--widget--title">Distance in {month} (km)</div>
+        <div className="small--widget--title">Distance in {month} ({units})</div>
         <div className="small--widget--number">
           <div className="large--number">
-            {getTotalMonthlyDistance(dataThisMonth)}
+            {getTotalMonthlyDistance(dataThisMonth, kmToggle)}
           </div>
         </div>
       </div>

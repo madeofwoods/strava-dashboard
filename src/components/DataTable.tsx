@@ -1,5 +1,6 @@
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../context/DataContextProvider";
 import { secsToMins } from "../utils/TimeFunctions";
 
 // Remember to memoise -- DataGrid is rendering 4 times on first load (8 with strict)
@@ -20,6 +21,10 @@ interface Props {
 
 export default function DataTable({ height, width, data }: Props) {
   const [tableData, setTableData] = useState<any[]>([]);
+  const {toggle, unitsKey} = useContext(DataContext)
+  const [kmToggle] = toggle
+  const units = unitsKey
+  const divisor = kmToggle ? 1000 : 1609.34
 
   useEffect(() => {
     setTableData(data);
@@ -28,9 +33,9 @@ export default function DataTable({ height, width, data }: Props) {
   const tableRows: GridRowsProp = tableData?.map((data, index) => ({
     id: index,
     name: data?.name,
-    distance: (data.distance / 1000).toFixed(2),
+    distance: (data.distance / divisor).toFixed(2),
     time: secsToMins(data.moving_time),
-    speed: secsToMins((data.moving_time * 1000) / data.distance),
+    speed: secsToMins((data.moving_time * divisor) / data.distance),
     oneKm: secsToMins(data.best_efforts[2].elapsed_time),
     fiveKm: data.best_efforts[5]
       ? secsToMins(data.best_efforts[5].elapsed_time)
@@ -51,7 +56,7 @@ export default function DataTable({ height, width, data }: Props) {
     },
     {
       field: "distance",
-      headerName: "Distance (km)",
+      headerName: `Distance (${units})`,
       width: 150,
       headerAlign: "center",
       align: "center",
@@ -67,7 +72,7 @@ export default function DataTable({ height, width, data }: Props) {
     },
     {
       field: "speed",
-      headerName: "Av. Speed (min/km)",
+      headerName: `Av. Speed (min/${units})`,
       width: 150,
       headerAlign: "center",
       align: "center",
