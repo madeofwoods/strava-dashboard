@@ -88,6 +88,20 @@
     color:#5696ea; 
 }
 
+.number--runs--number {
+    color:#55d2e5;
+}
+
+.distance--year--number {
+    color:#5696ea; 
+    color:#55d2e5;
+}
+
+.distance--month--number {
+    color:#9d7ff8;
+    color:#55d2e5;
+}
+
 .latest--widget{
     padding: 15px;
     width: 100%;

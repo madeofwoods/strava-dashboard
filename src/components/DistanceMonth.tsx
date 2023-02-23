@@ -30,7 +30,7 @@ export default function DistanceMonth({ data }: MonthProps) {
     <div className="widget widget--square">
       <div className="small--widget">
         <div className="small--widget--title">Distance in {month} ({units})</div>
-        <div className="small--widget--number">
+        <div className="small--widget--number distance--month--number">
           <div className="large--number">
             {getTotalMonthlyDistance(dataThisMonth, kmToggle)}
           </div>

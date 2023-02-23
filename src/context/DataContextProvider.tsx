@@ -9,7 +9,7 @@ interface ContextProps {
 export const DataContext = createContext<any | null>(null)
 
 export default function DataContextProvider({children}:ContextProps) {
-    const [name, setName] = useState<any>("Matt Woods")
+    const [name, setName] = useState<any>("")
     const [stravaData, setStravaData] = useState<any>([])
     const [kmToggle, setKmToggle] = useState<Boolean>(true)
     let units = kmToggle ? "km" : "miles"

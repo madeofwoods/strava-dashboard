@@ -25,8 +25,8 @@ export default function DistanceYear({ data }: YearProps) {
   return (
     <div className="widget widget--square">
       <div className="small--widget">
-        <div className="small--widget--title">Distance this year ({units})</div>
-        <div className="small--widget--number">
+        <div className="small--widget--title ">Distance this year ({units})</div>
+        <div className="small--widget--number distance--year--number">
           <div className="large--number">{getTotalDistance(data, kmToggle)}</div>
         </div>
       </div>

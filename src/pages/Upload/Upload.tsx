@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import { useEffect, useState, useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import jsonData from "../../assets/data.json"
+import { useNavigate } from "react-router-dom";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -20,6 +21,7 @@ export default function Upload() {
   const [stravaData, setStravaData] = stravaDataKey
   const [name, setName] = nameKey
   const numberOfRuns = 15
+  const navigate = useNavigate()
 
 
 
@@ -109,7 +111,8 @@ export default function Upload() {
   }, []);
 
   useEffect(() => {
-    stravaData && setLoaded(true);
+    stravaData.length > 0 && setLoaded(true);
+    stravaData.length > 0 && navigate("/dash");
   }, [stravaData]);
 
   return (
