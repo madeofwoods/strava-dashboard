@@ -7,10 +7,17 @@ import LineGraph from "../../components/LineGraph";
 import Maps from "../../components/Maps";
 import NumberRunsYear from "../../components/NumberRunsYear";
 // import data from "../../assets/data.json";
-import data from "../../assets/data.json"
+import data from "../../assets/data.json";
 import "./Dashboard.css";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import { useNavigate } from "react-router-dom";
 
 export default function DemoDash() {
+  const navigate = useNavigate();
+  const handleClick = (url: string) => {
+    navigate(url);
+  };
+
   return (
     <div className="dashboard--wrapper">
       <div className="dashboard">
@@ -18,19 +25,30 @@ export default function DemoDash() {
         <DistanceYear data={data} />
         <DistanceMonth data={data} />
         <LatestActivity data={data} />
-        <div className="widget widget--heatmap">
+        <div className="widget widget--heatmap icon--relative">
+          <div className="open--icon" onClick={(e) => handleClick("/maps")}>
+            <OpenInFullIcon className="open--icon--button" />
+          </div>
           <Maps zoom={12} data={data} />
         </div>
-        <div className="widget widget--graph">
-          <LineGraph
-            data={data}
-            distance="five"
-            position={5}
-            minmax={100}
-            label={"5km"}
-          />
+        <div className="widget widget--graph icon--relative">
+          <div className="open--icon" onClick={(e) => handleClick("/graphs")}>
+            <OpenInFullIcon className="open--icon--button" />
+          </div>
+          <div className="graph--container">
+            <LineGraph
+              data={data}
+              distance="five"
+              position={5}
+              minmax={100}
+              label={"5km"}
+            />
+          </div>
         </div>
-        <div className="widget widget--table">
+        <div className="widget widget--table icon--relative">
+          <div className="open--icon" onClick={(e) => handleClick("/tables")}>
+            <OpenInFullIcon className="open--icon--button" />
+          </div>
           <DataTable height={"100%"} width={"100%"} data={data} />
         </div>
         <div className="bottom--padding--grid"></div>

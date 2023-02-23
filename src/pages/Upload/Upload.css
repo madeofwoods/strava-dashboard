@@ -1,0 +1,10 @@
+.mountain--svg, .blur--svg {
+    stroke-dasharray: 691.1864013671875;
+    animation: animate 1s infinite linear ;
+}
+
+@keyframes animate {
+    from {stroke-dashoffset: 691.1864013671875;}
+    to {
+        stroke-dashoffset: 0;}
+}

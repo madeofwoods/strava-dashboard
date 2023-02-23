@@ -45,7 +45,7 @@ export default function LineGraph({data, distance, position, minmax, label, widt
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke='black' />
+          <CartesianGrid strokeDasharray="3 3" stroke='#323236' />
           <XAxis  dataKey="name" tickFormatter={time => moment(time).format("DD MMM")} />
           <YAxis domain={[`dataMin - ${minmax}`, `dataMax + ${minmax}`]}
               tickCount={8}
