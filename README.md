@@ -16,6 +16,8 @@ Accessing the Strava API's "best efforts" data, we can compare these in graphs a
 
 Strava API only allows 100 API requests per 15 minutes. The fastest times for each run must be called individually, using an activity id. This makes the data very request-heavy. I would recommend only calling 50 activities at once.
 
+Homepage 
+
 
 ## Environment Variables
 
