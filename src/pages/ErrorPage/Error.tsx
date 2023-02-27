@@ -2,13 +2,13 @@
 // import { DataContext } from "../../context/DataContextProvider";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Home.css";
+import "./Error.css";
 
-export default function Home() {
+export default function Error() {
   const [mouseOver, setMouseOver] = useState<Boolean>(false)
   const navigate = useNavigate()
   const handleClick = () => {
-    navigate("/site/demo")
+    navigate("/site")
   }
 
   const handleMouse = () => {
@@ -21,7 +21,8 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <div className="svg" >
+      <div className="error--message">Something went wrong...</div>
+      <div className="svg--error" >
         <svg 
           width="476"
           height="366"
@@ -69,7 +70,7 @@ export default function Home() {
         </svg>
       </div>
       <div className="connect--to--demo">
-        <button className="demo--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>View Demo</button>
+        <button className="demo--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Return To Site</button>
         <div className="blur"></div>
       </div>
     </div>

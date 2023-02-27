@@ -13,11 +13,11 @@ interface Errors {
 }
 
 export default function Upload() {
-  const [loaded, setLoaded] = useState<boolean>(false);
 
-  const { stravaDataKey, nameKey } = useContext(DataContext);
+  const { stravaDataKey, nameKey, loadeDateKey } = useContext(DataContext);
   const [stravaData, setStravaData] = stravaDataKey;
   const [name, setName] = nameKey;
+  const [loadDate, setLoadDate] = loadeDateKey
   const numberOfRuns = 15;
   const navigate = useNavigate();
 
@@ -25,10 +25,10 @@ export default function Upload() {
     return str.split("&")[1].slice(5);
   };
 
-  const getRefreshTokens = async (authTok: string) => {
+  const getAccessTokens = async (authToken: string) => {
     try {
       const response = await axios.post(
-        `https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&code=${authTok}&grant_type=authorization_code`
+        `https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&code=${authToken}&grant_type=authorization_code`
       );
       console.log("auth response", response);
 
@@ -36,7 +36,7 @@ export default function Upload() {
     } catch (error: any) {
       const message = error.message;
       //   setError({ error: true, errorMessage: message });
-      console.log("error getRefreshTokens", error);
+      console.log("error getAccessTokens", error);
     }
   };
 
@@ -92,7 +92,7 @@ export default function Upload() {
   const activate = async () => {
     try {
       const stravaAuthToken: string = getAuthToken(location.search);
-      const tokens: any = await getRefreshTokens(stravaAuthToken);
+      const tokens: any = await getAccessTokens(stravaAuthToken);
 
       const accessToken: string = await tokens.access_token;
       setName(`${tokens?.athlete.firstname} ${tokens?.athlete.lastname}`);
@@ -100,6 +100,9 @@ export default function Upload() {
       const user = await getUserData(accessToken);
       const bestEfforts = await getBestEffortsAll(user, accessToken);
       setStravaData(bestEfforts);
+
+      const dateNow = new Date()
+      setLoadDate(dateNow.getTime())
       return user;
     } catch (err) {
       console.log("err activate", err);
@@ -110,8 +113,8 @@ export default function Upload() {
   }, []);
 
   useEffect(() => {
-    stravaData.length > 0 && setLoaded(true);
-    stravaData.length > 0 && navigate("/dash");
+    // stravaData.length > 0 && setLoaded(true);
+    stravaData.length > 0 && navigate("/site/dash");
   }, [stravaData]);
 
   return (
@@ -165,7 +168,6 @@ export default function Upload() {
           </defs>
         </svg>
       </div>
-      {/* <div>{loaded ? "Loaded" : "Loading..."}</div> */}
     </div>
   );
 }

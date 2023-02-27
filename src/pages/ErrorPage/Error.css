@@ -129,3 +129,13 @@
     animation: anime 13s linear infinite;
 }
 
+.svg--error {
+    transform: rotate(180deg);
+}
+
+.error--message {
+    font-size: 18px;
+    color: #53c3cf;
+    position:absolute;
+    top: 40%
+}
