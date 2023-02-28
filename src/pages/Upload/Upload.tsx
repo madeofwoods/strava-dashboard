@@ -20,8 +20,8 @@ export default function Upload() {
   const numberOfRuns = 15;
   const navigate = useNavigate();
 
-  const getAuthToken = (str: string): string => {
-    return str.split("&")[1].slice(5);
+  const getAuthToken = (windowLocation: string): string => {
+    return windowLocation.split("&")[1].slice(5);
   };
 
   const getAccessTokens = async (authToken: string) => {
@@ -94,11 +94,11 @@ export default function Upload() {
 
       const accessToken: string = await tokens.access_token;
       setName(`${tokens?.athlete.firstname} ${tokens?.athlete.lastname}`);
-      // console.log("accessToken", accessToken);
+
       const user = await getUserData(accessToken);
       const bestEfforts = await getBestEffortsAll(user, accessToken);
       setStravaData(bestEfforts);
-      return user;
+      
     } catch (err) {
       console.log("err activate", err);
     }
