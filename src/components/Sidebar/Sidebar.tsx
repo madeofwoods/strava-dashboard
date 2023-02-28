@@ -8,9 +8,9 @@ import { DataContext } from "../../context/DataContextProvider";
 import "./Sidebar.css"
 
 const clientId: string = import.meta.env.VITE_CLIENT_ID;
-const redirectUrl: string = "http://localhost:5173/site/upload";
+// const redirectUrl: string = "http://localhost:5173/site/upload";
 const scope: string = "activity:read_all";
-
+const redirectUrl = import.meta.env.VITE_REDIRECT_URL;
 
 
 const handleLogin = (): void => {
