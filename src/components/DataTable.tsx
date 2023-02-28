@@ -28,6 +28,7 @@ export default function DataTable({ height, width, data }: Props) {
 
   useEffect(() => {
     setTableData(data);
+    console.log(data)
   }, [data]);
 
   const tableRows: GridRowsProp = tableData?.map((data, index) => ({
@@ -36,12 +37,17 @@ export default function DataTable({ height, width, data }: Props) {
     distance: (data.distance / divisor).toFixed(2),
     time: secsToMins(data.moving_time),
     speed: secsToMins((data.moving_time * divisor) / data.distance),
-    oneKm: secsToMins(data.best_efforts[2].elapsed_time),
+    oneKm: data.best_efforts[2]
+    ? secsToMins(data.best_efforts[2].moving_time)
+    : null,
+    oneMile: data.best_efforts[3]
+      ? secsToMins(data.best_efforts[3].moving_time)
+      : null,
     fiveKm: data.best_efforts[5]
-      ? secsToMins(data.best_efforts[5].elapsed_time)
+      ? secsToMins(data.best_efforts[5].moving_time)
       : null,
     tenKm: data.best_efforts[6]
-      ? secsToMins(data.best_efforts[6].elapsed_time)
+      ? secsToMins(data.best_efforts[6].moving_time)
       : null,
   }));
 
@@ -85,6 +91,14 @@ export default function DataTable({ height, width, data }: Props) {
       headerAlign: "center",
       align: "center",
       cellClassName: "columnOneKm",
+    },
+    {
+      field: "oneMile",
+      headerName: "Fastest 1 mile",
+      width: 150,
+      headerAlign: "center",
+      align: "center",
+      cellClassName: "columnOneMile",
     },
     {
       field: "fiveKm",

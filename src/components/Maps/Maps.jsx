@@ -1,7 +1,7 @@
 
 import { MapContainer, TileLayer, Popup, Polyline } from 'react-leaflet'
 import polyline from '@mapbox/polyline'
-import { useEffect } from 'react'
+import "./Maps.css"
 
 
 const getPolylines = (data) => {

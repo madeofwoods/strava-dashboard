@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState, useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
-import jsonData from "../../assets/data.json";
 import { useNavigate } from "react-router-dom";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -32,8 +31,6 @@ export default function Upload() {
 
       return response.data;
     } catch (error: any) {
-      const message = error.message;
-      //   setError({ error: true, errorMessage: message });
       console.log("error getAccessTokens", error);
     }
   };
@@ -47,11 +44,8 @@ export default function Upload() {
         `https://www.strava.com/api/v3/athlete/activities?before=${before}&after=1514764800&page=1&per_page=${numberOfRuns}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      // console.log(response);
       return response.data;
     } catch (error: any) {
-      // const message = error.message;
-      //   setError({ error: true, errorMessage: message });
       console.log("error getUserData", error);
     }
   };
@@ -61,7 +55,6 @@ export default function Upload() {
   }
 
   const getBestEffortsAll = async (userData: any[], accessToken: string) => {
-    // const array = []
     const endpoints = [];
     for (let i = 0; i < numberOfRuns; i++) {
       endpoints.push(
@@ -69,7 +62,6 @@ export default function Upload() {
       );
     }
     try {
-      // console.log(endpoints)
       const response: DataProps[] = await axios.all(
         endpoints.map((endpoint) =>
           axios.get(endpoint, {
@@ -79,8 +71,6 @@ export default function Upload() {
       );
 
       const getTheData = response.map((data) => data.data);
-
-      // console.log("getTheData", getTheData)
       return getTheData;
     } catch (error) {
       console.log("error getbestefforts", error);
@@ -98,7 +88,7 @@ export default function Upload() {
       const user = await getUserData(accessToken);
       const bestEfforts = await getBestEffortsAll(user, accessToken);
       setStravaData(bestEfforts);
-      
+
     } catch (err) {
       console.log("err activate", err);
     }
@@ -108,7 +98,6 @@ export default function Upload() {
   }, []);
 
   useEffect(() => {
-    // stravaData.length > 0 && setLoaded(true);
     stravaData.length > 0 && navigate("/site/dash");
   }, [stravaData]);
 

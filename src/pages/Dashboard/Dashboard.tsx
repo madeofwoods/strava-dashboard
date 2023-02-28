@@ -4,7 +4,7 @@ import DistanceMonth from "../../components/DistanceMonth";
 import DistanceYear from "../../components/DistanceYear";
 import LatestActivity from "../../components/LatestActivity";
 import LineGraph from "../../components/LineGraph";
-import Maps from "../../components/Maps";
+import Maps from "../../components/Maps/Maps";
 import NumberRunsYear from "../../components/NumberRunsYear";
 import jsonData from "../../assets/data.json";
 import "./Dashboard.css";

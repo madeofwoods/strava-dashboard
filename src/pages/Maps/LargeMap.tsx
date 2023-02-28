@@ -1,4 +1,4 @@
-import Maps from "../../components/Maps"
+import Maps from "../../components/Maps/Maps"
 import "./LargeMap.css"
 import { useContext } from "react"
 import { DataContext } from "../../context/DataContextProvider"
