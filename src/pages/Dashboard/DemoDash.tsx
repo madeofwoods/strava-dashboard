@@ -26,13 +26,13 @@ export default function DemoDash() {
         <DistanceMonth data={data} />
         <LatestActivity data={data} />
         <div className="widget widget--heatmap icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/maps")}>
+          <div className="open--icon" onClick={(e) => handleClick("/site/maps")}>
             <OpenInFullIcon className="open--icon--button" />
           </div>
           <Maps zoom={12} data={data} />
         </div>
         <div className="widget widget--graph icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/graphs")}>
+          <div className="open--icon" onClick={(e) => handleClick("/site/graphs")}>
             <OpenInFullIcon className="open--icon--button" />
           </div>
           <div className="graph--container">
@@ -46,7 +46,7 @@ export default function DemoDash() {
           </div>
         </div>
         <div className="widget widget--table icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/tables")}>
+          <div className="open--icon" onClick={(e) => handleClick("/site/tables")}>
             <OpenInFullIcon className="open--icon--button" />
           </div>
           <DataTable height={"100%"} width={"100%"} data={data} />

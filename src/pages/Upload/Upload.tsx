@@ -14,10 +14,9 @@ interface Errors {
 
 export default function Upload() {
 
-  const { stravaDataKey, nameKey, loadeDateKey } = useContext(DataContext);
+  const { stravaDataKey, nameKey } = useContext(DataContext);
   const [stravaData, setStravaData] = stravaDataKey;
   const [name, setName] = nameKey;
-  const [loadDate, setLoadDate] = loadeDateKey
   const numberOfRuns = 15;
   const navigate = useNavigate();
 
@@ -30,7 +29,6 @@ export default function Upload() {
       const response = await axios.post(
         `https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&code=${authToken}&grant_type=authorization_code`
       );
-      console.log("auth response", response);
 
       return response.data;
     } catch (error: any) {
@@ -100,9 +98,6 @@ export default function Upload() {
       const user = await getUserData(accessToken);
       const bestEfforts = await getBestEffortsAll(user, accessToken);
       setStravaData(bestEfforts);
-
-      const dateNow = new Date()
-      setLoadDate(dateNow.getTime())
       return user;
     } catch (err) {
       console.log("err activate", err);
@@ -134,13 +129,13 @@ export default function Upload() {
           <path className="mountain--svg"
             d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
             stroke="#91DDD8"
-            stroke-width="3"
+            strokeWidth="3"
           />
           <g filter="url(#filter0_f_1_5)">
             <path className="blur--svg"
               d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
               stroke="#91DDD8"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </g>
           <defs>
@@ -151,9 +146,9 @@ export default function Upload() {
               width="274.676"
               height="165.256"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend
                 mode="normal"
                 in="SourceGraphic"

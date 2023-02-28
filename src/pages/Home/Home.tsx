@@ -33,14 +33,14 @@ export default function Home() {
             className="mountain--svg"
             d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
             stroke={mouseOver? "rebeccaPurple" : "#91DDD8"}
-            stroke-width="3"
+            strokeWidth="3"
           />
           <g filter="url(#filter0_f_1_5)">
             <path
               className="blur--svg"
               d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
               stroke={mouseOver? "lightBlue" : "#91DDD8"}
-              stroke-width="3"
+              strokeWidth="3"
             />
           </g>
           <defs>
@@ -51,9 +51,9 @@ export default function Home() {
               width="274.676"
               height="165.256"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend
                 mode="normal"
                 in="SourceGraphic"

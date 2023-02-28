@@ -20,23 +20,11 @@ const handleLogin = (): void => {
 };
 
 export default function Sidebar() {
-  const { nameKey, stravaDataKey, loadeDateKey } = useContext(DataContext);
+  const { nameKey, stravaDataKey } = useContext(DataContext);
   const [name, setName] = nameKey;
   const [data] = stravaDataKey;
-  const [page, setPage] = useState<string | undefined>(String(location.href).split("/").pop())
-  const [loadDate] = loadeDateKey
 
-  const handleClick = (str:string) => {
-    setPage(str)
-  }
-
- useEffect(() => {
-  setPage(String(location.href).split("/").pop())
-  // console.log("loaded")
-  console.log(loadDate)
- }, [loadDate])
-
-
+ 
   return (
     <div className="sidebar">
       <hr className="sidebar--hr" />
@@ -50,21 +38,21 @@ export default function Sidebar() {
       <div className="middle--and--bottom">
         <div className="sidebar--middle">
           {data.length > 0 && (
-            <Link to={"/site/dash"} className="router--link" onClick={e => handleClick("dash")}>
-              <div className={page == "dash" ?  "middle--text--select" : "middle--text"} >Dashboard</div>
+            <Link to={"/site/dash"} className="router--link" >
+              <div className="middle--text" >Dashboard</div>
             </Link>
           )}
           <div onClick={handleLogin} className="middle--text" >
             Upload
           </div>
 
-          <Link to={"/site/demo"} className="router--link" onClick={e => handleClick("demo")}>
-            <div className={page == "demo" ?  "middle--text--select" : "middle--text"} >Demo</div>
+          <Link to={"/site/demo"} className="router--link" >
+            <div className="middle--text" >Demo</div>
           </Link>
         </div>
         <div className="sidebar--bottom">
-          <Link to={"/site/tables"} className="router--link" onClick={e => handleClick("tables")}>
-            <div className= {page == "tables" ? "sidebar--link--select" : "sidebar--link" } >
+          <Link to={"/site/tables"} className="router--link" >
+            <div className= "sidebar--link" >
               <TableChartOutlinedIcon className="icon" />
               <div className="link" >Tables</div>
             </div>
@@ -75,14 +63,14 @@ export default function Sidebar() {
             <div className="link">Grid</div>
           </div>
         </Link> */}
-          <Link to={"/site/maps"} className="router--link" onClick={e => handleClick("maps")}>
-            <div className= {page == "maps" ? "sidebar--link--select" :"sidebar--link" }  >
+          <Link to={"/site/maps"} className="router--link" >
+            <div className= "sidebar--link" >
               <MapOutlinedIcon className="icon" />
               <div className="link" >Maps</div>
             </div>
           </Link>
-          <Link to={"/site/graphs"} className="router--link" onClick={e => handleClick("graphs")}>
-            <div className= {page == "graphs" ? "sidebar--link--select" : "sidebar--link" }>
+          <Link to={"/site/graphs"} className="router--link" >
+            <div className= "sidebar--link">
               <TimelineOutlinedIcon className="icon" />
               <div className="link" >Graphs</div>
             </div>
