@@ -8,13 +8,15 @@ The main aim was to create the functionality of Training Peaks - an application 
 Accessing the Strava API's "best efforts" data, we can compare these in graphs and tables.
 
 
-## The Dashboard
+## Dashboard
 
 ![Dashboard](./src/assets/screenshot.png)
 
+View Demo [here](https://strava-dash.netlify.app).
+
 ## Dev Notes
 
-Strava API only allows 100 API requests per 15 minutes. The fastest times for each run must be called individually, using an activity id. This makes the data very request-heavy. I would recommend only calling 50 activities at once.
+Strava API only allows 100 API requests per 15 minutes. The additional data (fastest times etc..) for each run must be called individually, using an activity id. This makes the data very request-heavy. I would recommend only calling max. 20 activities at once while testing.
 
 Homepage 
 
@@ -26,4 +28,6 @@ To run this project, you will need to add the following VITE environment variabl
 `VITE_CLIENT_SECRET`
 
 `VITE_CLIENT_ID`
+
+`VITE_REDIRECT_URL`
 
