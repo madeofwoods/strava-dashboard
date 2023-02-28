@@ -12,13 +12,14 @@ export default function DataContextProvider({children}:ContextProps) {
     const [name, setName] = useState<any>("")
     const [stravaData, setStravaData] = useState<any>([])
     const [kmToggle, setKmToggle] = useState<Boolean>(true)
-    const [redirect, setRedirect] = useState<string>("")
+    const [errorStatus, setErrorStatus] = useState<number>(400)
     let units = kmToggle ? "km" : "miles"
     const store = {
         nameKey: [name, setName],
         stravaDataKey: [stravaData, setStravaData],
         toggle: [kmToggle, setKmToggle],
         unitsKey: units,
+        axiosError: [errorStatus, setErrorStatus]
     }
     return (
         <DataContext.Provider value={store}>

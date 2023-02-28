@@ -8,7 +8,7 @@ import Maps from "../../components/Maps/Maps";
 import NumberRunsYear from "../../components/NumberRunsYear";
 import jsonData from "../../assets/data.json";
 import "./Dashboard.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { useNavigate } from "react-router-dom";
@@ -60,6 +60,9 @@ export default function Dashboard() {
       </div>
     );
   } else {
+    useEffect(() => {
+      navigate("/site/demo")
+    },[])
     return (
       <div>No data</div>
     )

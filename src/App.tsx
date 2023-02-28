@@ -13,12 +13,12 @@ import DemoDash from "./pages/Dashboard/DemoDash";
 import Upload from "./pages/Upload/Upload";
 import DataContextProvider from "./context/DataContextProvider";
 import Navbar from "./components/Navbar/Navbar";
-import Error from "./pages/ErrorPage/Error";
+import Error from "./pages/ErrorPages/Error";
+import AxiosError from "./pages/ErrorPages/AxiosError";
 
 
 const Layout = () => {
   return (
-    <DataContextProvider>
       <div className="main--app">
         <Sidebar />
         <div className="main--content">
@@ -28,15 +28,18 @@ const Layout = () => {
           </div>
         </div>
       </div>
-    </DataContextProvider>
   );
 };
 
 const Welcome = () => {
   return (
-    <DataContextProvider>
       <Home/>
-    </DataContextProvider>
+  )
+}
+
+const Errors = () => {
+  return (
+      <AxiosError/>
   )
 }
 
@@ -77,7 +80,7 @@ const router = createBrowserRouter([
       {
         path: "/site/upload/*",
         element: <Upload />,
-        errorElement: <Welcome />,
+        errorElement: <Error />,
       },
     ],
   },
@@ -85,6 +88,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Welcome />,
     errorElement: <Error />,
+  },
+  {
+    path: "/error",
+    element: <Errors />,
   },
 ]);
 

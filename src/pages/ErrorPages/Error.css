@@ -38,9 +38,17 @@
     color: #d37373;
 }
 
-.mountain--svg, .blur--svg {
+.mountain--svg--error, .blur--svg--error {
     stroke-dasharray: 691.1864013671875;
     animation: animate 2s linear, fade 3s ease-out infinite 2s ;
+}
+
+.mountain--svg--error {
+    stroke: #cd1919;
+}
+
+.blur--svg--error {
+    stroke: #af19cd;
 }
 
 @keyframes animate {
@@ -69,7 +77,7 @@
 
 }
 
-.demo--button {
+.error--button {
     position: relative;
     font-size: 26px;
     width: 200px;
@@ -99,7 +107,7 @@
     position: relative;
 }
 
-.blur {
+.error--blur {
     position: absolute;
     width: 200px;
     height: 60px;
@@ -110,20 +118,20 @@
     filter: blur(15px);
 }
 
-.demo--button, .blur {
-    background: linear-gradient(-45deg, #00aeff, #53c3cf, #59bbd8, #3c8df0);
+.error--button, .error--blur {
+    background: linear-gradient(-45deg, #8800ff, #b453cf, #9f0e54, #f03c3c);
     background-size: 300%;
     animation: anime 14s linear infinite;
 }
 
-.demo--button:hover ~ .blur {
+.error--button:hover ~ .error--blur {
     background: linear-gradient(-45deg, #0048ff, #5f53cf, #9b59d8, #d23cf0);
     background-size: 300%;
     animation: anime 13s linear infinite;
 
 }
 
-.demo--button:hover {
+.error--button:hover {
     background: linear-gradient(-45deg, #042695, #361d71, #42185c, #591062);
     background-size: 300%;
     animation: anime 13s linear infinite;
@@ -134,8 +142,14 @@
 }
 
 .error--message {
-    font-size: 18px;
-    color: #53c3cf;
-    position:absolute;
-    top: 40%
+    font-size: 24px;
+    color: #d0abf1;
+    position:relative;
+    margin-bottom: 40px;
+}
+
+.error--span {
+    font-size: 24px;
+    color: #ee135f;
+    margin-right: 10px;
 }

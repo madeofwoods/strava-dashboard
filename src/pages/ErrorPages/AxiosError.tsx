@@ -1,11 +1,45 @@
 // import React, { useContext } from "react";
-// import { DataContext } from "../../context/DataContextProvider";
-import { useState } from "react";
+import { DataContext } from "../../context/DataContextProvider";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Error.css";
 
-export default function Error() {
+export default function AxiosError() {
   const [mouseOver, setMouseOver] = useState<Boolean>(false)
+  const { axiosError } = useContext(DataContext)
+  const [errorStatus, setErrorStatus] = axiosError
+
+//   useEffect(()=> {
+//     setErrorStatus(404)
+//   },[])
+
+
+  const errorHandler = (error: number) => {
+    switch (error) {
+        case 444:
+            return "Woods broke something";
+            break
+        case 400:
+            return "Something went wrong";
+            break;
+        case 401:
+        case 404:
+            return 'Please the tick box "View data about your private activities" to view your data.';
+            break;
+        case 403: 
+            return "We are forbidden from accessing this data. Please check your privacy settings to continue.";
+            break;
+        case 429:
+            return "Apologies, Strava limits the number of requests we can make per 15 minutes. Please try again later.";
+            break;
+        case 500: 
+            return "Apologies, Strava is having technical issues at the moment."
+    }
+  }
+
+//   console.log(errorHandler(429))
+  console.log("axiosError", errorStatus)
+
   const navigate = useNavigate()
   const handleClick = () => {
     navigate("/site")
@@ -21,7 +55,6 @@ export default function Error() {
 
   return (
     <div className="Home">
-      <div className="error--message">Something went wrong...</div>
       <div className="svg--error" >
         <svg 
           width="476"
@@ -31,14 +64,14 @@ export default function Error() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className="mountain--svg"
+            className="mountain--svg--error"
             d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
             stroke={mouseOver? "rebeccaPurple" : "#91DDD8"}
             strokeWidth="3"
           />
           <g filter="url(#filter0_f_1_5)">
             <path
-              className="blur--svg"
+              className="blur--svg--error"
               d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
               stroke={mouseOver? "lightBlue" : "#91DDD8"}
               strokeWidth="3"
@@ -69,9 +102,10 @@ export default function Error() {
           </defs>
         </svg>
       </div>
+      <div className="error--message"><span className="error--span">Error:</span> {errorHandler(errorStatus)}</div>
       <div className="connect--to--demo">
-        <button className="demo--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Return To Site</button>
-        <div className="blur"></div>
+        <button className="error--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Return To Site</button>
+        <div className="error--blur"></div>
       </div>
     </div>
   );

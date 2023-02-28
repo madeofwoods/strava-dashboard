@@ -13,11 +13,12 @@ interface Errors {
 
 export default function Upload() {
 
-  const { stravaDataKey, nameKey } = useContext(DataContext);
+  const { stravaDataKey, nameKey, axiosError } = useContext(DataContext);
   const [stravaData, setStravaData] = stravaDataKey;
   const [name, setName] = nameKey;
   const numberOfRuns = 15;
   const navigate = useNavigate();
+  const [errorStatus, setErrorStatus] = axiosError
 
   const getAuthToken = (windowLocation: string): string => {
     return windowLocation.split("&")[1].slice(5);
@@ -32,6 +33,9 @@ export default function Upload() {
       return response.data;
     } catch (error: any) {
       console.log("error getAccessTokens", error);
+      console.log("error getAccessTokens status", error.response.status)
+      // setErrorStatus(error.response.status)
+      //this post request is triggered twice in React.StrictMode -- an error always occurs the second time
     }
   };
 
@@ -47,6 +51,8 @@ export default function Upload() {
       return response.data;
     } catch (error: any) {
       console.log("error getUserData", error);
+      console.log("status", error.response.status)
+      setErrorStatus(error.response.status)
     }
   };
 
@@ -72,8 +78,10 @@ export default function Upload() {
 
       const getTheData = response.map((data) => data.data);
       return getTheData;
-    } catch (error) {
+    } catch (error: any) {
       console.log("error getbestefforts", error);
+      console.log("status", error.response.status)
+      setErrorStatus(error.response.status)
     }
   };
 
@@ -94,12 +102,21 @@ export default function Upload() {
     }
   };
   useEffect(() => {
+    
     activate();
   }, []);
 
   useEffect(() => {
     stravaData.length > 0 && navigate("/site/dash");
   }, [stravaData]);
+
+  useEffect(()=> {
+    if (errorStatus !== 444) {
+      console.log("navigating because:",errorStatus)
+      
+      navigate("/error")
+    }
+  }, [errorStatus])
 
   return (
     <div>
