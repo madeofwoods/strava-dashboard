@@ -17,10 +17,10 @@ export default function AxiosError() {
   const errorHandler = (error: number) => {
     switch (error) {
         case 444:
-            return "Woods broke something";
+            return "Apologies, we are having technical issues at the moment.";
             break
         case 400:
-            return "Something went wrong";
+            return "Apologies, we are having technical issues at the moment.";
             break;
         case 401:
         case 404:

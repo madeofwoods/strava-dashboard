@@ -37,7 +37,7 @@ const Welcome = () => {
   )
 }
 
-const Errors = () => {
+const NavigateErrors = () => {
   return (
       <AxiosError/>
   )
@@ -80,7 +80,6 @@ const router = createBrowserRouter([
       {
         path: "/site/upload/*",
         element: <Upload />,
-        errorElement: <Error />,
       },
     ],
   },
@@ -91,7 +90,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/error",
-    element: <Errors />,
+    element: <NavigateErrors />,
   },
 ]);
 

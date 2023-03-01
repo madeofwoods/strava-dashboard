@@ -12,7 +12,7 @@ export default function DataContextProvider({children}:ContextProps) {
     const [name, setName] = useState<any>("")
     const [stravaData, setStravaData] = useState<any>([])
     const [kmToggle, setKmToggle] = useState<Boolean>(true)
-    const [errorStatus, setErrorStatus] = useState<number>(400)
+    const [errorStatus, setErrorStatus] = useState<number>(444)
     let units = kmToggle ? "km" : "miles"
     const store = {
         nameKey: [name, setName],
