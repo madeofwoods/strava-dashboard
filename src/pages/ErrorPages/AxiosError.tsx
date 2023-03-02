@@ -3,60 +3,36 @@ import { DataContext } from "../../context/DataContextProvider";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Error.css";
+import { errorHandler } from "./utils";
 
 export default function AxiosError() {
-  const [mouseOver, setMouseOver] = useState<Boolean>(false)
-  const { axiosError } = useContext(DataContext)
-  const [errorStatus, setErrorStatus] = axiosError
+  const [mouseOver, setMouseOver] = useState<Boolean>(false);
+  const { axiosError } = useContext(DataContext);
+  const [errorStatus, setErrorStatus] = axiosError;
 
-//   useEffect(()=> {
-//     setErrorStatus(404)
-//   },[])
+  //   useEffect(()=> {
+  //     setErrorStatus(404)
+  //   },[])
 
+  //   console.log(errorHandler(429))
+  console.log("axiosError", errorStatus);
 
-  const errorHandler = (error: number) => {
-    switch (error) {
-        case 444:
-            return "Apologies, we are having technical issues at the moment.";
-            break
-        case 400:
-            return "Apologies, we are having technical issues at the moment.";
-            break;
-        case 401:
-        case 404:
-            return 'Please the tick box "View data about your private activities" to view your data.';
-            break;
-        case 403: 
-            return "We are forbidden from accessing this data. Please check your privacy settings to continue.";
-            break;
-        case 429:
-            return "Apologies, Strava limits the number of requests we can make per 15 minutes. Please try again later.";
-            break;
-        case 500: 
-            return "Apologies, Strava is having technical issues at the moment."
-    }
-  }
-
-//   console.log(errorHandler(429))
-  console.log("axiosError", errorStatus)
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/site")
-  }
+    navigate("/site");
+  };
 
   const handleMouse = () => {
-    setMouseOver(true)
-  }
+    setMouseOver(true);
+  };
   const handleMouseLeave = () => {
-    setMouseOver(false)
-    
-  }
+    setMouseOver(false);
+  };
 
   return (
     <div className="Home">
-      <div className="svg--error" >
-        <svg 
+      <div className="svg--error">
+        <svg
           width="476"
           height="366"
           viewBox="0 0 276 166"
@@ -66,14 +42,14 @@ export default function AxiosError() {
           <path
             className="mountain--svg--error"
             d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
-            stroke={mouseOver? "rebeccaPurple" : "#91DDD8"}
+            stroke={mouseOver ? "rebeccaPurple" : "#91DDD8"}
             strokeWidth="3"
           />
           <g filter="url(#filter0_f_1_5)">
             <path
               className="blur--svg--error"
               d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
-              stroke={mouseOver? "lightBlue" : "#91DDD8"}
+              stroke={mouseOver ? "lightBlue" : "#91DDD8"}
               strokeWidth="3"
             />
           </g>
@@ -102,9 +78,18 @@ export default function AxiosError() {
           </defs>
         </svg>
       </div>
-      <div className="error--message"><span className="error--span">Error:</span> {errorHandler(errorStatus)}</div>
+      <div className="error--message">
+        <span className="error--span">Error:</span> {errorHandler(errorStatus)}
+      </div>
       <div className="connect--to--demo">
-        <button className="error--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Return To Site</button>
+        <button
+          className="error--button"
+          onClick={handleClick}
+          onMouseOver={handleMouse}
+          onMouseLeave={handleMouseLeave}
+        >
+          Return To Site
+        </button>
         <div className="error--blur"></div>
       </div>
     </div>

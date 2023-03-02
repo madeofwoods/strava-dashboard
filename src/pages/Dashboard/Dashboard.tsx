@@ -14,58 +14,67 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
-  const { stravaDataKey } = useContext(DataContext)
-  const [data, setData] = stravaDataKey
+  const { stravaDataKey } = useContext(DataContext);
+  const [data, setData] = stravaDataKey;
   const navigate = useNavigate();
   const handleClick = (url: string) => {
     navigate(url);
   };
 
-  if (data?.length > 0) {
-    return (
-      <div className="dashboard--wrapper">
-        <div className="dashboard">
-          <NumberRunsYear data={data} />
-          <DistanceYear data={data} />
-          <DistanceMonth data={data} />
-          <LatestActivity data={data} />
-          <div className="widget widget--heatmap icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/site/maps")}>
-            <OpenInFullIcon className="open--icon--button" />
+  useEffect(() => {
+    if (data?.length <= 0) navigate("/site/demo");
+  }, []);
+
+  return (
+    <div>
+      {data?.length > 0 ? (
+        <div className="dashboard--wrapper">
+          <div className="dashboard">
+            <NumberRunsYear data={data} />
+            <DistanceYear data={data} />
+            <DistanceMonth data={data} />
+            <LatestActivity data={data} />
+            <div className="widget widget--heatmap icon--relative">
+              <div
+                className="open--icon"
+                onClick={(e) => handleClick("/site/maps")}
+              >
+                <OpenInFullIcon className="open--icon--button" />
+              </div>
+              <Maps zoom={12} data={data} />
+            </div>
+            <div className="widget widget--graph icon--relative">
+              <div
+                className="open--icon"
+                onClick={(e) => handleClick("/site/graphs")}
+              >
+                <OpenInFullIcon className="open--icon--button" />
+              </div>
+              <div className="graph--container">
+                <LineGraph
+                  data={data}
+                  distance="five"
+                  position={5}
+                  minmax={100}
+                  label={"5km"}
+                />
+              </div>
+            </div>
+            <div className="widget widget--table icon--relative">
+              <div
+                className="open--icon"
+                onClick={(e) => handleClick("/site/tables")}
+              >
+                <OpenInFullIcon className="open--icon--button" />
+              </div>
+              <DataTable height={"100%"} width={"100%"} data={data} />
+            </div>
+            <div className="bottom--padding--grid"></div>
           </div>
-          <Maps zoom={12} data={data} />
         </div>
-        <div className="widget widget--graph icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/site/graphs")}>
-            <OpenInFullIcon className="open--icon--button" />
-          </div>
-          <div className="graph--container">
-            <LineGraph
-              data={data}
-              distance="five"
-              position={5}
-              minmax={100}
-              label={"5km"}
-            />
-          </div>
-        </div>
-        <div className="widget widget--table icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/site/tables")}>
-            <OpenInFullIcon className="open--icon--button" />
-          </div>
-          <DataTable height={"100%"} width={"100%"} data={data} />
-        </div>
-          <div className="bottom--padding--grid"></div>
-        </div>
-      </div>
-    );
-  } else {
-    useEffect(() => {
-      navigate("/site/demo")
-    },[])
-    return (
-      <div>No data</div>
-    )
-  }
-  
+      ) : (
+        <div>No data</div>
+      )}
+    </div>
+  );
 }
