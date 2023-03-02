@@ -1,21 +1,27 @@
-.sidebar, .mobile--sidebar {
-    background-color: #232e5a;
+.mobile--sidebar, .mobile--sidebar--closed {
+    background-color: #323f73;
     color: white;
-    flex: 1;
-    min-width: 175px;
+    /* flex: 1; */
+    min-width: 60px;
+    max-width: 60px;
     height: 100vh;
-    position: relative;
+    position: fixed;
     padding-top: 40px;
     display: flex;
     flex-direction: column;
+    z-index: 2;
+    transform: translateX(0px);
+    transition: transform 1s ease-in-out;
     /* justify-content: stretch; */
   }
 
-  .mobile--sidebar {
-    background-color: #572274;
+  .mobile--sidebar--closed {
+    transform: translateX(-100px);
   }
+
   
-  .middle--and--bottom {
+
+  .mobile--middle--and--bottom {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,36 +30,16 @@
   }
   
   
-  .sidebar--top, .sidebar--bottom, .sidebar--middle {
+  .mobile--sidebar--bottom, .mobile--sidebar--middle {
     display: flex;
     flex-direction: column;
     text-align: center;
   }
   
-  .sidebar--hr {
-    height: 0;
-    border: 0.5px solid rgba(106, 106, 164, 0.5);
-  }
   
-  .sidebar--top {
-  /* gap: 10px; */
-  justify-content: center;
-  height: 120px;
-  position: relative;
-  /* background-color: #31345b; */
-  /* justify-content: space-evenly; */
-  }
   
-  .sidebar--name {
-    color: #c8d6d6;
-    position: absolute;
-    font-size: 14px;
-    left:50%;
-    top:78%;
-    transform: translate(-50%, -50%);
-  }
   
-  .sidebar--middle {
+  .mobile--sidebar--middle {
     gap: 35px;
     flex:4;
     /* background-color: blue; */
@@ -62,7 +48,7 @@
     justify-content: center;
   }
   
-  .sidebar--bottom {
+  .mobile--sidebar--bottom {
     gap:10px;
     flex:1;
     display: flex;
@@ -71,7 +57,7 @@
     margin-bottom: 20px;
   }
   
-  .middle--text, .middle--text--select {
+  .mobile--middle--text, .mobile--middle--text--select {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +68,7 @@
     color: white;
   }
   
-  .sidebar--link, .sidebar--link--select {
+  .mobile--sidebar--link, .mobile--sidebar--link--select {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -93,13 +79,13 @@
     gap: 20px;
   }
 
-  .sidebar--link--select, .middle--text--select {
+  .mobile--sidebar--link--select, .mobile--middle--text--select {
     background-color: #222a4a;
   }
 
   
   
-  .sidebar--link:hover, .middle--text:hover {
+  .mobile--sidebar--link:hover, .mobile--middle--text:hover {
     background-color: #2f3b69;
     color:#a4a4e3;
   }
