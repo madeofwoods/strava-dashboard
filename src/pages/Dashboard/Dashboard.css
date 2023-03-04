@@ -208,6 +208,7 @@
   }
   .widget {
     width: 80%;
+    padding: 5px;
   }
 
   .widget--square {
@@ -225,13 +226,14 @@
   .widget--graph {
     /* max-width: 400px; */
     /* width: 300px; */
+    margin: auto;
     grid-column: 1/2;
     grid-row: 8/9;
     background-color: #0d0c23;
+    /* overflow: scroll; */
   }
 
   .graph--container {
-    /* transform: rotate(90deg); */
     width: 100%;
     height: 100%;
     overflow: scroll;
@@ -241,6 +243,5 @@
     width: 100%;
     grid-column: 1/2;
     grid-row: 5/7;
-    /* } */
   }
 }
