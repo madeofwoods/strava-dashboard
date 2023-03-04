@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import heroImg from "../../assets/hero.png"
 
 export default function Home() {
   const [mouseOver, setMouseOver] = useState<Boolean>(false)
@@ -21,10 +22,12 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <div className="svg" >
+      <div className="home--title">Strava Dashboard</div>
+      <div className="home--text">All your running data in one place.</div>
+      {/* <div className="svg--home" >
         <svg 
-          width="476"
-          height="366"
+          width="276"
+          height="126"
           viewBox="0 0 276 166"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -67,10 +70,17 @@ export default function Home() {
             </filter>
           </defs>
         </svg>
-      </div>
+      </div> */}
+        <img className="hero--img" src={heroImg} alt="" />
+        <div className="buttons">
       <div className="connect--to--demo">
         <button className="demo--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>View Demo</button>
         <div className="blur"></div>
+        </div>
+      <div className="connect--to--demo">
+        <button className="strava--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Connect to  Strava</button>
+        <div className="blur strava--blur"></div>
+        </div>
       </div>
     </div>
   );

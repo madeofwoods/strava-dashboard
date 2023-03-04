@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: #0d1125;
     color: #eff0f0;
     width: 100vw;
     height: 100vh;
-    gap: 10px;
+    gap: 60px;
 }
 
 .input--name {
@@ -19,6 +19,15 @@
     margin-left: 2px;
   
     /* border-bottom: 1px solid white; */
+}
+
+.home--title {
+    font-size: 55px;
+}
+
+.home--text {
+    font-size: 16px;
+    color: #9fa3a6;
 }
 
 .input--name::placeholder {
@@ -41,6 +50,10 @@
 .mountain--svg, .blur--svg {
     stroke-dasharray: 691.1864013671875;
     animation: animate 2s linear, fade 3s ease-out infinite 2s ;
+}
+
+.svg--home {
+    z-index: 3;
 }
 
 @keyframes animate {
@@ -69,12 +82,12 @@
 
 }
 
-.demo--button {
+.demo--button, .strava--button {
     position: relative;
-    font-size: 26px;
-    width: 200px;
-    height: 60px;
-    border-radius: 50px;
+    font-size: 16px;
+    width: 170px;
+    height: 50px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
     /* background-color: rgb(35, 129, 129); */
@@ -101,13 +114,12 @@
 
 .blur {
     position: absolute;
-    width: 200px;
-    height: 60px;
-    /* background-color: red; */
+    width: 170px;
+    height: 50px;
+    border-radius: 8px;
     top:0;
-    border-radius: 50px;
     z-index: 1;
-    filter: blur(15px);
+    filter: blur(7px);
 }
 
 .demo--button, .blur {
@@ -129,3 +141,57 @@
     animation: anime 13s linear infinite;
 }
 
+
+.strava--button {
+    /* background: linear-gradient(-45deg, #eb6a19, #ce5b26, #dc5812, #ed5919);
+    background-size: 300%; */
+    background-color: #4349bb;
+    color: white;
+}
+
+.strava--blur {
+    background: linear-gradient(-45deg, #435694, #747179, #926baa, #c39fc8);
+    background-size: 300%;
+}
+/* Hero */
+
+.hero--img {
+    border-radius: 10px;
+    position:relative;
+    bottom:2%;
+    height: 50%;
+    transform: perspective(600px) rotateX(18deg); 
+    margin-top: 30px;
+    margin-bottom: 50px;
+    animation: perspective 12s infinite ease-in-out ;
+} 
+
+.img--container {
+    flex: 5;
+
+}
+
+.buttons {
+    display: flex;
+    gap: 80px;
+}
+
+@keyframes perspective {
+    0% {
+    transform: perspective(900px) rotateX(18deg);
+    }
+    25% {
+    transform: perspective(950px) rotateX(15deg);
+    }
+    50% {
+    transform: perspective(1000px) rotateX(12deg);
+    /* height: 50%; */
+    }
+    75% {
+    transform: perspective(950px) rotateX(15deg);
+    }
+    100% {
+    transform: perspective(900px) rotateX(18deg);
+    }
+    
+}
