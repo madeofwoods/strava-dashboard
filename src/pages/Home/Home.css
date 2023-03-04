@@ -163,7 +163,7 @@
     transform: perspective(600px) rotateX(18deg); 
     margin-top: 30px;
     margin-bottom: 50px;
-    animation: perspective 12s infinite ease-in-out ;
+    animation: perspective 20s infinite ease-in-out ;
 } 
 
 .img--container {
