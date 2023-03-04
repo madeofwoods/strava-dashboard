@@ -30,10 +30,18 @@ export default function Dashboard() {
       {data?.length > 0 ? (
         <div className="dashboard--wrapper">
           <div className="dashboard">
+            <div className="widget--small">
             <NumberRunsYear data={data} />
+            </div>
+            <div className="widget--small">
             <DistanceYear data={data} />
+            </div>
+            <div className="widget--small">
             <DistanceMonth data={data} />
+            </div>
+            <div className="widget--small">
             <LatestActivity data={data} />
+            </div>
             <div className="widget widget--heatmap icon--relative">
               <div
                 className="open--icon"

@@ -4,3 +4,10 @@
     background-color: black;
     padding: 0;
 }
+
+@media (max-width:600px) {
+    .large--map {
+        width: 100%;
+        height: 100%;
+    }
+}

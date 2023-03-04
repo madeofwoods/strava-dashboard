@@ -28,7 +28,6 @@ interface PropTypes {
   position: number;
   minmax: number;
   label: string;
-  width?: string;
 }
 
 const LineGraph = ({
@@ -37,7 +36,6 @@ const LineGraph = ({
   position,
   minmax,
   label,
-  width = "120%",
 }: PropTypes) => {
   const [graphData, setGraphData] = useState<any[]>(
     getRunData(data, distance, 2)
@@ -48,12 +46,12 @@ const LineGraph = ({
   }, [data]);
 
   return (
-    <div style={{ width: width, height: "100%" }}>
+    <div className="inner--graph">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           // title='Fastest 5km time each run'
-          width={500}
-          height={300}
+          // width={500}
+          // height={300}
           data={graphData}
           margin={{
             top: 25,

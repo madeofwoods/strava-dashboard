@@ -1,5 +1,6 @@
 .mobile--sidebar, .mobile--sidebar--closed {
     background-color: #323f73;
+    opacity: 0.8;
     color: white;
     /* flex: 1; */
     min-width: 60px;

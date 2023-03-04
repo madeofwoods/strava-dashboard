@@ -1,50 +1,66 @@
-
 .navbar {
-    position: absolute;
-    width: 100vw;
-    height: 40px;
-    background-color: #232e5a;
-    /* background-color: #d75531; */
-    top: 0;
-    left:0;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 7fr 1fr;
-    /* grid-column-gap: 5px; */
-    justify-items: center;
-    z-index: 4;
-    padding: 0px 30px;
-  }
+  position: absolute;
+  width: 100vw;
+  height: 40px;
+  background-color: #232e5a;
+  /* background-color: #d75531; */
+  top: 0;
+  left: 0;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 7fr 1fr;
+  /* grid-column-gap: 5px; */
+  justify-items: center;
+  z-index: 4;
+  padding: 0px 30px;
+}
 
 .navbar--title {
-    grid-column: 2/3;
+  grid-column: 2/3;
 }
 
 .km--miles {
-    grid-column: 3/4;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  grid-column: 3/4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .hamburger {
-    position: absolute;
-    top:8px;
-    left: 30px;
-    transform: translateX(-50%);
-    cursor: pointer;
-  }
-
-.toggle--image {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  position: absolute;
+  top: 8px;
+  left: 30px;
+  transform: translateX(-50%);
+  cursor: pointer;
 }
 
+.toggle--image {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 
+@media (max-width: 1200px) {
+  .km--miles {
+    font-size: 12px;
+  }
+}
 
-@media (max-width:1200px) {
-    .km--miles {
-        font-size: 12px;
-    }
+@media (max-width: 400px) {
+  .navbar {
+    padding: 0px 5px 0px 30px;
+  }
+
+  .navbar--title {
+    font-size: 12px;
+  }
+
+  .toggle--image {
+    transform: scale(0.8);
+  }
+
+  .km--miles {
+    font-size: 10px;
+    gap:3px;
+  }
 }
