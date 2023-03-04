@@ -27,7 +27,7 @@ export default function Graphs() {
 
       {tenKm > 1 &&      
       <div className='five--graph'>
-          <LineGraph data={data.length > 0 ? data : demoData} distance="ten" position={6} minmax={100} label={"10km"} width={"100%"}/>
+          <LineGraph data={data.length > 0 ? data : demoData} distance="ten" position={6} minmax={100} label={"10km"}/>
       </div>
       }
     </div>
