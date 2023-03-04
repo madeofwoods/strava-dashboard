@@ -23,6 +23,8 @@ Homepage
 
 ## Environment Variables
 
+Git
+
 To run this project, you will need to add the following VITE environment variables to your .env file.
 
 `VITE_CLIENT_SECRET`
