@@ -1,5 +1,8 @@
 /* A Css file to store the stylings for the dashboard and smaller widgets */
 
+
+/* TEST */
+
 .dashboard--wrapper {
   padding: 25px;
   height: 100%;
@@ -204,7 +207,6 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 30px;
     margin: auto;
-    /* grid-auto-rows: 250px; */
   }
   .widget {
     width: 80%;
@@ -224,13 +226,10 @@
   }
 
   .widget--graph {
-    /* max-width: 400px; */
-    /* width: 300px; */
     margin: auto;
     grid-column: 1/2;
     grid-row: 8/9;
     background-color: #0d0c23;
-    /* overflow: scroll; */
   }
 
   .graph--container {
