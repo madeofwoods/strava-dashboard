@@ -71,7 +71,9 @@ export default function Home() {
           </defs>
         </svg>
       </div> */}
+      <div className="image--container">
         <img className="hero--img" src={heroImg} alt="" />
+        </div>
         <div className="buttons">
       <div className="connect--to--demo">
         <button className="demo--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>View Demo</button>
