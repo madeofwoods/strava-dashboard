@@ -17,6 +17,7 @@ import Error from "./pages/ErrorPages/Error";
 import AxiosError from "./pages/ErrorPages/AxiosError";
 import { useContext, useEffect, useState } from "react";
 import MobileSidebar from "./components/Sidebar/MobileSidebar";
+import About from "./pages/About/About";
 
 
 interface mQueryType {
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: "/site/upload/*",
         element: <Upload />,
+      },
+      {
+        path: "/site/about",
+        element: <About />,
       },
     ],
   },

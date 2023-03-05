@@ -27,13 +27,17 @@ export default function Sidebar() {
         <hr className="sidebar--hr" />
       <div className="middle--and--bottom">
         <div className="sidebar--middle">
+          <Link to={"/site/about"} className="router--link" >
+            <div className="middle--text" >About</div>
+          </Link>
+          
           {data.length > 0 && (
             <Link to={"/site/dash"} className="router--link" >
               <div className="middle--text" >Dashboard</div>
             </Link>
           )}
           <div onClick={e => handleLogin(clientId, scope, redirectUrl)} className="middle--text" >
-            Upload
+            Strava
           </div>
 
           <Link to={"/site/demo"} className="router--link" >
