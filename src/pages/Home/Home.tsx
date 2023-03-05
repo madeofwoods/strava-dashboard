@@ -2,14 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import heroImg from "../../assets/hero.png"
+import { handleLogin, clientId, scope, redirectUrl } from "../../utils/LoginFunctions";
+
 
 export default function Home() {
-  const [mouseOver, setMouseOver] = useState<Boolean>(false)
+  const [mouseOver, setMouseOver] = useState<boolean>(false)
   const navigate = useNavigate()
   const handleClick = () => {
     navigate("/site/demo")
   }
-
 
 
   const handleMouse = () => {
@@ -80,7 +81,7 @@ export default function Home() {
         <div className="blur"></div>
         </div>
       <div className="connect--to--demo">
-        <button className="strava--button" onClick={handleClick} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Connect to  Strava</button>
+        <button className="strava--button" onClick={e => handleLogin(clientId, scope, redirectUrl)} onMouseOver={handleMouse} onMouseLeave={handleMouseLeave}>Connect to  Strava</button>
         <div className="blur strava--blur"></div>
         </div>
       </div>

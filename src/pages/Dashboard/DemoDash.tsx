@@ -6,7 +6,6 @@ import LatestActivity from "../../components/LatestActivity";
 import LineGraph from "../../components/LineGraph";
 import Maps from "../../components/Maps/Maps";
 import NumberRunsYear from "../../components/NumberRunsYear";
-// import data from "../../assets/data.json";
 import data from "../../assets/data.json";
 import "./Dashboard.css";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
@@ -21,18 +20,32 @@ export default function DemoDash() {
   return (
     <div className="dashboard--wrapper">
       <div className="dashboard">
-        <NumberRunsYear data={data} />
-        <DistanceYear data={data} />
-        <DistanceMonth data={data} />
-        <LatestActivity data={data} />
+        <div className="widget--small">
+          <NumberRunsYear data={data} />
+        </div>
+        <div className="widget--small">
+          <DistanceYear data={data} />
+        </div>
+        <div className="widget--small">
+          <DistanceMonth data={data} />
+        </div>
+        <div className="widget--small">
+          <LatestActivity data={data} />
+        </div>
         <div className="widget widget--heatmap icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/site/maps")}>
+          <div
+            className="open--icon"
+            onClick={(e) => handleClick("/site/maps")}
+          >
             <OpenInFullIcon className="open--icon--button" />
           </div>
           <Maps zoom={12} data={data} />
         </div>
         <div className="widget widget--graph icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/site/graphs")}>
+          <div
+            className="open--icon"
+            onClick={(e) => handleClick("/site/graphs")}
+          >
             <OpenInFullIcon className="open--icon--button" />
           </div>
           <div className="graph--container">
@@ -46,7 +59,10 @@ export default function DemoDash() {
           </div>
         </div>
         <div className="widget widget--table icon--relative">
-          <div className="open--icon" onClick={(e) => handleClick("/site/tables")}>
+          <div
+            className="open--icon"
+            onClick={(e) => handleClick("/site/tables")}
+          >
             <OpenInFullIcon className="open--icon--button" />
           </div>
           <DataTable height={"100%"} width={"100%"} data={data} />

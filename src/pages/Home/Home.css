@@ -124,35 +124,51 @@
     filter: blur(7px);
 }
 
-.demo--button, .blur {
-    background: linear-gradient(-45deg, #00aeff, #53c3cf, #59bbd8, #3c8df0);
+.blur {
+    background: linear-gradient(-45deg, #cbccd1, #9c9ca2, #d0d0d4, #9fa0a1);
     background-size: 300%;
     animation: anime 14s linear infinite;
 }
 
 .demo--button:hover ~ .blur {
-    background: linear-gradient(-45deg, #0048ff, #5f53cf, #9b59d8, #d23cf0);
+    background: linear-gradient(-45deg, #3f4d7b, #7180af, #5b6070, #3f4d7b);
     background-size: 300%;
     animation: anime 13s linear infinite;
 
+}
+
+.strava--button:hover ~ .blur {
+    background: linear-gradient(-45deg, #d06d11, #db852a, #ce381a, #cd9a25);
+    background-size: 300%;
+    animation: anime 13s linear infinite;
+
+}
+
+
+.demo--button {
+    background-color: #cdd0d3;
+    color: rgb(13, 3, 3);
+}
+
+.strava--button {
+    background-color: #205490;
+    background-color: #e1e4e7;
+    color: white;
+    color: rgb(13, 3, 3);
 }
 
 .demo--button:hover {
-    background: linear-gradient(-45deg, #042695, #361d71, #42185c, #591062);
-    background-size: 300%;
-    animation: anime 13s linear infinite;
+    background-color: #3f4d7b;
+    color: white;
 }
 
-
-.strava--button {
-    /* background: linear-gradient(-45deg, #eb6a19, #ce5b26, #dc5812, #ed5919);
-    background-size: 300%; */
-    background-color: #363a8b;
+.strava--button:hover {
+    background-color: #ec6618;
     color: white;
 }
 
 .strava--blur {
-    background: linear-gradient(-45deg, #3f4d7b, #17135f, #2f2ac4, #105095);
+    background: linear-gradient(-45deg, #cbccd1, #9c9ca2, #d0d0d4, #9fa0a1);
     background-size: 300%;
 }
 /* Hero */

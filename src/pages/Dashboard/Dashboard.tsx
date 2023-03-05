@@ -26,7 +26,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div>
+    <div className="Dash">
       {data?.length > 0 ? (
         <div className="dashboard--wrapper">
           <div className="dashboard">

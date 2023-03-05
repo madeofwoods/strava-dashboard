@@ -6,17 +6,8 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import "./Sidebar.css"
+import { handleLogin, clientId, scope, redirectUrl } from "../../utils/LoginFunctions";
 
-const clientId: string = import.meta.env.VITE_CLIENT_ID;
-const scope: string = "activity:read_all";
-const redirectUrl = import.meta.env.VITE_REDIRECT_URL;
-
-
-const handleLogin = (): void => {
-  (
-    window as Window
-  ).location = `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=${scope}`;
-};
 
 export default function Sidebar() {
   const { nameKey, stravaDataKey } = useContext(DataContext);
@@ -41,7 +32,7 @@ export default function Sidebar() {
               <div className="middle--text" >Dashboard</div>
             </Link>
           )}
-          <div onClick={handleLogin} className="middle--text" >
+          <div onClick={e => handleLogin(clientId, scope, redirectUrl)} className="middle--text" >
             Upload
           </div>
 
