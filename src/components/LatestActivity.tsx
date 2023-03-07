@@ -24,7 +24,7 @@ export default function LatestActivity({ data }: LatestProps) {
         <div className="latest--title">Latest Run</div>
         <div className="latest--boxes">
           <div className="latest--box box1">
-            <div className="latest--text">Distance (km)</div>
+            <div className="latest--text">Distance ({units})</div>
             <div className="latest--number">{distanceInKm}</div>
           </div>
           <div className="latest--box--2 box2">
@@ -32,7 +32,7 @@ export default function LatestActivity({ data }: LatestProps) {
             <div className="latest--number">{secsToMins(time)}</div>
           </div>
           <div className="latest--box box3">
-            <div className="latest--text">Speed (min/km)</div>
+            <div className="latest--text">Speed (min/{units})</div>
             <div className="latest--number">{secsToMins(speed)}</div>
           </div>
         </div>
