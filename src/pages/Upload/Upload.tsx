@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "./utils";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import "./Upload.css"
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -24,7 +24,7 @@ export default function Upload() {
 
   const toastErrorHandler = (errorStatus: number) => {
     const errorMessage = errorHandler(errorStatus)
-    toast.error(errorMessage, {className: "toast--error", progressClassName: "toast--error--progress"})
+    // toast.error(errorMessage, {className: "toast--error", progressClassName: "toast--error--progress"})
   }
 
   const getAuthToken = (windowLocation: string): string => {
