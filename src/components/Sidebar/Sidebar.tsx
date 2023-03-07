@@ -30,7 +30,7 @@ export default function Sidebar() {
         <div className="sidebar--middle">
           
             <Link to={"/site/dash"} className="router--link" >
-              <div className={`middle--text ${active == "Dashboard" || active == "Dash" ? "highlighted" : "not--highlighted"}`}  >{data?.length > 0 ? "Dashboard" : "Demo"}</div>
+              <div className={`middle--text ${active == "Dashboard" || active == "Demo" ? "highlighted" : "not--highlighted"}`}  >{data?.length > 0 ? "Dashboard" : "Demo"}</div>
             </Link>
           <div onClick={e => handleLogin(clientId, scope, redirectUrl)} className="middle--text" >
             Strava

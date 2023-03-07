@@ -28,7 +28,7 @@ const MobileSidebar = () => {
       <div className="mobile--middle--and--bottom">
         <div className="mobile--sidebar--middle">
             <Link to={"/site/dash"} className="router--link">
-              <div className={`mobile--middle--text ${active == "Dashboard" || active == "Dash" ? "sm--highligted" : ""}  ` }>
+              <div className={`mobile--middle--text ${active == "Dashboard" || active == "Demo" ? "sm--highligted" : ""}  ` }>
                 <DashboardTwoToneIcon className="mobile--icon" />
               </div>
             </Link>
