@@ -6,7 +6,6 @@ import LatestActivity from "../../components/LatestActivity";
 import LineGraph from "../../components/LineGraph";
 import Maps from "../../components/Maps/Maps";
 import NumberRunsYear from "../../components/NumberRunsYear";
-import jsonData from "../../assets/data.json";
 import "./Dashboard.css";
 import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContextProvider";
