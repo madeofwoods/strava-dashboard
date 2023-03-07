@@ -1,4 +1,3 @@
-// import CalendarMap from "../../components/CalendarMap"
 import DataTable from "../../components/DataTable";
 import DistanceMonth from "../../components/DistanceMonth";
 import DistanceYear from "../../components/DistanceYear";

@@ -214,7 +214,6 @@
 
 @media (max-width: 530px) {
   .dashboard {
-    /* grid-template-columns: repeat(1, 1fr); */
     grid-gap: 30px;
     margin: auto;
   }
@@ -223,8 +222,6 @@
   }
   .widget {
     grid-column: 1/3;
-    /* height: 200px; */
-    /* width: 80%; */
     padding: 5px;
   }
 
@@ -239,7 +236,6 @@
   }
 
   .widget--graph {
-    /* margin: auto; */
     grid-column: 1/3;
     grid-row: 8/9;
     background-color: #0d0c23;
