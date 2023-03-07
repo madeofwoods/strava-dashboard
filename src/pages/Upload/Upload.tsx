@@ -4,7 +4,7 @@ import { DataContext } from "../../context/DataContextProvider";
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "./utils";
 import { toast } from "react-toastify";
-import "./Upload.css"
+import "./Upload.css";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -23,9 +23,13 @@ export default function Upload() {
   const [, setErrorStatus] = axiosError;
 
   const toastErrorHandler = (errorStatus: number) => {
-    const errorMessage = errorHandler(errorStatus)
-    toast.error(errorMessage, {className: "toast--error", progressClassName: "toast--error--progress"})
-  }
+    const errorMessage = errorHandler(errorStatus);
+    toast.error(errorMessage, {
+      className: "toast--error",
+      progressClassName: "toast--error--progress",
+    });
+    navigate("/site/dash")
+  };
 
   const getAuthToken = (windowLocation: string): string => {
     return windowLocation.split("&")[1].slice(5);
@@ -61,7 +65,7 @@ export default function Upload() {
       console.log("error getUserData", error);
       console.log("status", error.response.status);
       setErrorStatus(error.response.status);
-      toastErrorHandler(error.response.status)
+      toastErrorHandler(error.response.status);
     }
   };
 
@@ -91,7 +95,7 @@ export default function Upload() {
       console.log("error getbestefforts", error);
       console.log("status", error.response.status);
       setErrorStatus(error.response.status);
-      toastErrorHandler(error.response.status)
+      toastErrorHandler(error.response.status);
     }
   };
 
@@ -104,34 +108,56 @@ export default function Upload() {
       setName(`${tokens?.athlete.firstname} ${tokens?.athlete.lastname}`);
 
       const user = await getUserData(accessToken);
+      if ((user.length == 0)) {
+        toast("You have no data to load yet", {
+          className: "toast--error",
+          autoClose: 3000,
+          progressClassName: "toast--loading--progress",
+        });
+        navigate("/site/dash")
+      }
+      console.log(user);
       const bestEfforts = await getBestEffortsAll(user, accessToken);
       setStravaData(bestEfforts);
     } catch (error: any) {
       console.log("err activate", error);
-      
     }
   };
   useEffect(() => {
-    toast("Loading Data", {className: "toast--loading", autoClose: 3000, progressClassName: "toast--loading--progress"})
+    toast("Loading Data", {
+      className: "toast--loading",
+      autoClose: 3000,
+      progressClassName: "toast--loading--progress",
+    });
     activate();
   }, []);
 
   useEffect(() => {
-    stravaData.length > 0 && navigate("/site/dash");
+    if (stravaData.length > 0)  {navigate("/site/dash");
+    }
+    
   }, [stravaData]);
 
-  // useEffect(() => {
-  //   if (errorStatus !== 444) {
-  //     console.log("navigating because:", errorStatus);
+  useEffect(() => {
+    setTimeout(() => {
+        if (window.location.href.includes("upload")){
+          navigate("/site/dash");
+          toast("Please try again.", {
+            className: "toast--error",
+            autoClose: 3000,
+            progressClassName: "toast--loading--progress",
+          });
+        console.log(window.location.href)}
+      }, 5000)
+  },[])
 
-  //     navigate("/error");
-  //   }
-  // }, [errorStatus]);
+  
 
   return (
     <div className="Upload">
       <div className="svg">
-        <svg className="svg--upload"
+        <svg
+          className="svg--upload"
           width="576"
           height="466"
           viewBox="0 0 276 166"

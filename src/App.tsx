@@ -43,13 +43,7 @@ const Layout = () => {
   }, []);
 
   return (
-    <>
-      <ToastContainer 
-        className="toast--position"
-        autoClose={6000}
-        closeOnClick 
-        style={{width: "250px"}}
-        />
+
       <div className="main--app">
         {mQuery.matches ? <MobileSidebar /> : <Sidebar />}
         <div className="main--content">
@@ -59,7 +53,6 @@ const Layout = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
@@ -105,10 +98,6 @@ const router = createBrowserRouter([
         path: "/site/demo",
         element: <DemoDash />,
       },
-      {
-        path: "/site/upload/*",
-        element: <Upload />,
-      },
     ],
   },
   {
@@ -120,11 +109,22 @@ const router = createBrowserRouter([
     path: "/error",
     element: <NavigateErrors />,
   },
+  {
+    path: "/upload/*",
+    element: <Upload />,
+  },
 ]);
 
 function App() {
   return (
     <div className="App">
+
+<ToastContainer 
+        className="toast--position"
+        autoClose={6000}
+        closeOnClick 
+        style={{width: "250px"}}
+        />
       <RouterProvider router={router} />
     </div>
   );
