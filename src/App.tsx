@@ -11,62 +11,65 @@ import Graphs from "./pages/Graphs/Graphs";
 import Grid from "./pages/Grid/Grid";
 import DemoDash from "./pages/Dashboard/DemoDash";
 import Upload from "./pages/Upload/Upload";
-import DataContextProvider, { DataContext } from "./context/DataContextProvider";
+import DataContextProvider, {
+  DataContext,
+} from "./context/DataContextProvider";
 import Navbar from "./components/Navbar/Navbar";
 import Error from "./pages/ErrorPages/Error";
 import AxiosError from "./pages/ErrorPages/AxiosError";
 import { useContext, useEffect, useState } from "react";
 import MobileSidebar from "./components/Sidebar/MobileSidebar";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 interface mQueryType {
-  matches: Boolean,
+  matches: Boolean;
 }
 
 const Layout = () => {
-
-  const {mediaKey} = useContext(DataContext);
+  const { mediaKey } = useContext(DataContext);
   const [mQuery, setMQuery] = mediaKey;
 
-  const isMobile = window.matchMedia("(max-width: 700px)")
+  const isMobile = window.matchMedia("(max-width: 700px)");
 
   function handleMediaChange(e: MediaQueryListEvent) {
-      setMQuery({matches: e.matches})
+    setMQuery({ matches: e.matches });
   }
-  
-  useEffect(() => {
-    isMobile.addEventListener("change", handleMediaChange)
-    // Clean-up Function
-    return () => isMobile.removeEventListener("change", handleMediaChange)
-  }, [])
 
-  
- 
+  useEffect(() => {
+    isMobile.addEventListener("change", handleMediaChange);
+    // Clean-up Function
+    return () => isMobile.removeEventListener("change", handleMediaChange);
+  }, []);
 
   return (
+    <>
+      <ToastContainer 
+        className="toast--position"
+        autoClose={6000}
+        closeOnClick 
+        style={{width: "250px"}}
+        />
       <div className="main--app">
-        {mQuery.matches ? <MobileSidebar/> : <Sidebar />}
+        {mQuery.matches ? <MobileSidebar /> : <Sidebar />}
         <div className="main--content">
           <Navbar />
           <div className="main--content--container">
-          <Outlet />
+            <Outlet />
           </div>
         </div>
       </div>
+    </>
   );
 };
 
 const Welcome = () => {
-  return (
-      <Home/>
-  )
-}
+  return <Home />;
+};
 
 const NavigateErrors = () => {
-  return (
-      <AxiosError/>
-  )
-}
+  return <AxiosError />;
+};
 
 const router = createBrowserRouter([
   {
