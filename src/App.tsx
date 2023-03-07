@@ -19,8 +19,8 @@ import Error from "./pages/ErrorPages/Error";
 import AxiosError from "./pages/ErrorPages/AxiosError";
 import { useContext, useEffect, useState } from "react";
 import MobileSidebar from "./components/Sidebar/MobileSidebar";
-// import "react-toastify/dist/ReactToastify.css";
-// import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 interface mQueryType {
   matches: Boolean;
@@ -44,12 +44,12 @@ const Layout = () => {
 
   return (
     <>
-      {/* <ToastContainer 
+      <ToastContainer 
         className="toast--position"
         autoClose={6000}
         closeOnClick 
         style={{width: "250px"}}
-        /> */}
+        />
       <div className="main--app">
         {mQuery.matches ? <MobileSidebar /> : <Sidebar />}
         <div className="main--content">

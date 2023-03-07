@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "./utils";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "./Upload.css"
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -24,7 +24,7 @@ export default function Upload() {
 
   const toastErrorHandler = (errorStatus: number) => {
     const errorMessage = errorHandler(errorStatus)
-    // toast.error(errorMessage, {className: "toast--error", progressClassName: "toast--error--progress"})
+    toast.error(errorMessage, {className: "toast--error", progressClassName: "toast--error--progress"})
   }
 
   const getAuthToken = (windowLocation: string): string => {
@@ -61,8 +61,7 @@ export default function Upload() {
       console.log("error getUserData", error);
       console.log("status", error.response.status);
       setErrorStatus(error.response.status);
-      // toastErrorHandler(error.response.status)
-      // toast.error("Error")
+      toastErrorHandler(error.response.status)
     }
   };
 
@@ -92,7 +91,7 @@ export default function Upload() {
       console.log("error getbestefforts", error);
       console.log("status", error.response.status);
       setErrorStatus(error.response.status);
-      // toastErrorHandler(error.response.status)
+      toastErrorHandler(error.response.status)
     }
   };
 
@@ -113,7 +112,7 @@ export default function Upload() {
     }
   };
   useEffect(() => {
-    // toast("Loading Data", {className: "toast--loading", autoClose: 3000, progressClassName: "toast--loading--progress"})
+    toast("Loading Data", {className: "toast--loading", autoClose: 3000, progressClassName: "toast--loading--progress"})
     activate();
   }, []);
 
