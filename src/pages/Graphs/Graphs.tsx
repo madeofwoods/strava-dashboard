@@ -1,12 +1,17 @@
 import LineGraph from '../../components/LineGraph'
 import "./Graphs.css"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { DataContext } from "../../context/DataContextProvider"
 import demoData from "../../assets/data.json"
 
 export default function Graphs() {
-  const { stravaDataKey } = useContext(DataContext)
-  const [data, setData] = stravaDataKey
+  const { stravaDataKey, activeKey } = useContext(DataContext)
+  const [data] = stravaDataKey
+  const [, setActive] = activeKey
+
+  useEffect(() => {
+    setActive("Graphs")
+  }, [])
 
   const getRunData = (data: any[]) => {
 

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 interface ContextProps {
   children: React.ReactNode;
@@ -20,14 +20,19 @@ export default function DataContextProvider({ children }: ContextProps) {
   });
   const [menuOpen, setMenuOpen] = useState<Boolean>(false)
   let units = kmToggle ? "km" : "miles";
-  const store = {
-    nameKey: [name, setName],
-    stravaDataKey: [stravaData, setStravaData],
-    toggle: [kmToggle, setKmToggle],
-    unitsKey: units,
-    axiosError: [errorStatus, setErrorStatus],
-    mediaKey: [mQuery, setMQuery],
-    menuKey: [menuOpen, setMenuOpen]
-  };
+  const [active, setActive] = useState("Demo")
+  const store = useMemo(() => (
+    {
+        nameKey: [name, setName],
+        stravaDataKey: [stravaData, setStravaData],
+        toggle: [kmToggle, setKmToggle],
+        unitsKey: units,
+        axiosError: [errorStatus, setErrorStatus],
+        mediaKey: [mQuery, setMQuery],
+        menuKey: [menuOpen, setMenuOpen],
+        activeKey: [active, setActive]
+       })
+  , [name, stravaData, kmToggle, units, errorStatus, mQuery, menuOpen, active])
+
   return <DataContext.Provider value={store}>{children}</DataContext.Provider>;
 }

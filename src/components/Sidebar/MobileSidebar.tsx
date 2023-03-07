@@ -1,5 +1,4 @@
-import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined";
-import MenuTwoToneIcon from "@mui/icons-material/MenuTwoTone";
+import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined"
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
@@ -20,45 +19,36 @@ const handleLogin = (): void => {
 };
 
 const MobileSidebar = () => {
-  const { nameKey, stravaDataKey, menuKey } = useContext(DataContext);
-  const [name, setName] = nameKey;
-  const [data] = stravaDataKey;
-  const [menuOpen, setMenuOpen] = menuKey;
+  const { menuKey, activeKey } = useContext(DataContext);
+  const [menuOpen] = menuKey;
+  const [active] = activeKey
 
   return (
     <div className={menuOpen ? "mobile--sidebar" : "mobile--sidebar--closed"}>
       <div className="mobile--middle--and--bottom">
         <div className="mobile--sidebar--middle">
-          {data.length > 0 && (
             <Link to={"/site/dash"} className="router--link">
-              <div className="middle--text">
+              <div className={`mobile--middle--text ${active == "Dashboard" || active == "Dash" ? "sm--highligted" : ""}  ` }>
                 <DashboardTwoToneIcon className="mobile--icon" />
               </div>
             </Link>
-          )}
-          <div onClick={handleLogin} className="middle--text">
+          <div onClick={handleLogin} className="mobile--middle--text">
             <CloudUploadTwoToneIcon className="mobile--icon" />
           </div>
-
-          <Link to={"/site/demo"} className="router--link">
-            <div className="middle--text">
-              <DashboardTwoToneIcon className="mobile--icon" />
-            </div>
-          </Link>
         </div>
         <div className="mobile--sidebar--bottom">
           <Link to={"/site/tables"} className="router--link">
-            <div className="mobile--sidebar--link">
+            <div className={`mobile--sidebar--link ${active == "Tables" ? "sm--highligted" : ""} ` }>
               <TableChartOutlinedIcon className="mobile--icon" />
             </div>
           </Link>
           <Link to={"/site/maps"} className="router--link">
-            <div className="mobile--sidebar--link">
+            <div className={`mobile--sidebar--link ${active == "Maps" ? "sm--highligted" : ""} ` }>
               <MapOutlinedIcon className="mobile--icon" />
             </div>
           </Link>
           <Link to={"/site/graphs"} className="router--link">
-            <div className="mobile--sidebar--link">
+            <div className={`mobile--sidebar--link ${active == "Graphs" ? "sm--highligted" : ""} ` }>
               <TimelineOutlinedIcon className="mobile--icon" />
             </div>
           </Link>
