@@ -170,9 +170,9 @@ const About = () => {
           <div className="timeline--line--container">
             <div className="timeline--line"></div>
           </div>
-          <div className="timeline--block" ref={blockTwo}>
+          <div className="timeline--block four--image--block" ref={blockTwo}>
             <motion.div
-              className="timeline--image--container"
+              className="timeline--image--container four--image--block"
               variants={secondBlockVariants}
               initial="hidden"
               animate={animationTwo}

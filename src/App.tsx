@@ -29,7 +29,7 @@ const Layout = () => {
   const {mediaKey} = useContext(DataContext);
   const [mQuery, setMQuery] = mediaKey;
 
-  const isMobile = window.matchMedia("(max-width: 700px)")
+  const isMobile = window.matchMedia("(max-width: 860px)")
 
   function handleMediaChange(e: MediaQueryListEvent) {
       setMQuery({matches: e.matches})
