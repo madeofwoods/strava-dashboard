@@ -10,9 +10,10 @@ import { handleLogin, clientId, scope, redirectUrl } from "../../utils/LoginFunc
 
 
 export default function Sidebar() {
-  const { nameKey, stravaDataKey } = useContext(DataContext);
-  const [name, setName] = nameKey;
+  const { nameKey, stravaDataKey, activeKey } = useContext(DataContext);
+  const [name] = nameKey;
   const [data] = stravaDataKey;
+  const [active] = activeKey
 
  
   return (
@@ -30,35 +31,28 @@ export default function Sidebar() {
           <Link to={"/site/about"} className="router--link" >
             <div className="middle--text" >About</div>
           </Link>
-          
-          {data.length > 0 && (
             <Link to={"/site/dash"} className="router--link" >
-              <div className="middle--text" >Dashboard</div>
+              <div className={`middle--text ${active == "Dashboard" || active == "Demo" ? "highlighted" : "not--highlighted"}`}  >{data?.length > 0 ? "Dashboard" : "Demo"}</div>
             </Link>
-          )}
           <div onClick={e => handleLogin(clientId, scope, redirectUrl)} className="middle--text" >
             Strava
           </div>
-
-          <Link to={"/site/demo"} className="router--link" >
-            <div className="middle--text" >Demo</div>
-          </Link>
         </div>
         <div className="sidebar--bottom">
           <Link to={"/site/tables"} className="router--link" >
-            <div className= "sidebar--link" >
+            <div className= {`sidebar--link ${active == "Tables" ? "highlighted" : "not--highlighted"}`} >
               <TableChartOutlinedIcon className="icon" />
               <div className="link" >Tables</div>
             </div>
           </Link>
           <Link to={"/site/maps"} className="router--link" >
-            <div className= "sidebar--link" >
+            <div className= {`sidebar--link ${active == "Maps" ? "highlighted" : "not--highlighted"}`} >
               <MapOutlinedIcon className="icon" />
               <div className="link" >Maps</div>
             </div>
           </Link>
           <Link to={"/site/graphs"} className="router--link" >
-            <div className= "sidebar--link">
+            <div className= {`sidebar--link ${active == "Graphs" ? "highlighted" : "not--highlighted"}`}>
               <TimelineOutlinedIcon className="icon" />
               <div className="link" >Graphs</div>
             </div>

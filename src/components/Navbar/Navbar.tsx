@@ -7,11 +7,11 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 
 export default function Navbar() {
-  const { toggle, unitsKey, mediaKey, menuKey } = useContext(DataContext);
+  const { toggle, mediaKey, menuKey, activeKey } = useContext(DataContext);
   const [kmToggle, setKmToggle] = toggle;
-  const units = unitsKey;
-  const [mQuery, setMQuery] = mediaKey;
+  const [mQuery] = mediaKey;
   const [menuOpen, setMenuOpen] = menuKey;
+  const [active] = activeKey
 
   const handleClick = () => {
     setKmToggle(!kmToggle);
@@ -27,7 +27,7 @@ export default function Navbar() {
           {menuOpen ? <CloseTwoToneIcon/> : <MenuTwoToneIcon />}
         </div>
       ) : null}
-      <div className="navbar--title">Strava Dashboard</div>
+      <div className="navbar--title">{active}</div>
       <div className="km--miles">
         <span style={{ opacity: kmToggle ? "1" : "0.2" }}>km</span>
         <div className="toggle--image" onClick={handleClick}>

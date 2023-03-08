@@ -1,6 +1,7 @@
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContextProvider";
+import { BestEfforts } from "../types/Types";
 import { secsToMins } from "../utils/TimeFunctions";
 
 // Remember to memoise -- DataGrid is rendering 4 times on first load (8 with strict)
@@ -16,11 +17,11 @@ interface DataProps {
 interface Props {
   height: string;
   width: string;
-  data: any[];
+  data: BestEfforts[];
 }
 
 export default function DataTable({ height, width, data }: Props) {
-  const [tableData, setTableData] = useState<any[]>([]);
+  const [tableData, setTableData] = useState<BestEfforts[] | []>([]);
   const {toggle, unitsKey} = useContext(DataContext)
   const [kmToggle] = toggle
   const units = unitsKey
@@ -31,7 +32,7 @@ export default function DataTable({ height, width, data }: Props) {
     console.log(data)
   }, [data]);
 
-  const tableRows: GridRowsProp = tableData?.map((data, index) => ({
+  const tableRows: GridRowsProp = tableData?.map((data: BestEfforts, index) => ({
     id: index,
     name: data?.name,
     distance: (data.distance / divisor).toFixed(2),

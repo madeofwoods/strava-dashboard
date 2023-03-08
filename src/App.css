@@ -41,3 +41,7 @@ overflow-x: scroll;
 }
 
 
+
+.toast--position {
+  top: 60px !important;
+}

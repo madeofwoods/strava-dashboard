@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataContextProvider";
+import { BestEfforts } from "../types/Types";
 
-const getTotalDistance = (data: any[], km: boolean): string => {
+const getTotalDistance = (data: BestEfforts[], km: boolean): string => {
   const dataThisYear = data.filter(
-    (run) => run.start_date.slice(0, 4) == "2023"
+    (run) => String(run.start_date).slice(0, 4) == "2023"
   );
   const distances = dataThisYear.map((data) => data.distance);
   const meters = Math.round(distances.reduce((a, b) => a + b, 0));
@@ -14,7 +15,7 @@ const getTotalDistance = (data: any[], km: boolean): string => {
 };
 
 interface YearProps {
-  data: any[];
+  data: BestEfforts[];
 }
 
 export default function DistanceYear({ data }: YearProps) {

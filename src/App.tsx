@@ -11,46 +11,46 @@ import Graphs from "./pages/Graphs/Graphs";
 import Grid from "./pages/Grid/Grid";
 import DemoDash from "./pages/Dashboard/DemoDash";
 import Upload from "./pages/Upload/Upload";
-import DataContextProvider, { DataContext } from "./context/DataContextProvider";
+import DataContextProvider, {
+  DataContext,
+} from "./context/DataContextProvider";
 import Navbar from "./components/Navbar/Navbar";
 import Error from "./pages/ErrorPages/Error";
 import AxiosError from "./pages/ErrorPages/AxiosError";
 import { useContext, useEffect, useState } from "react";
 import MobileSidebar from "./components/Sidebar/MobileSidebar";
 import About from "./pages/About/About";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 interface mQueryType {
-  matches: Boolean,
+  matches: Boolean;
 }
 
 const Layout = () => {
-
-  const {mediaKey} = useContext(DataContext);
+  const { mediaKey } = useContext(DataContext);
   const [mQuery, setMQuery] = mediaKey;
 
   const isMobile = window.matchMedia("(max-width: 860px)")
 
   function handleMediaChange(e: MediaQueryListEvent) {
-      setMQuery({matches: e.matches})
+    setMQuery({ matches: e.matches });
   }
-  
-  useEffect(() => {
-    isMobile.addEventListener("change", handleMediaChange)
-    // Clean-up Function
-    return () => isMobile.removeEventListener("change", handleMediaChange)
-  }, [])
 
-  
- 
+  useEffect(() => {
+    isMobile.addEventListener("change", handleMediaChange);
+    // Clean-up Function
+    return () => isMobile.removeEventListener("change", handleMediaChange);
+  }, []);
 
   return (
+
       <div className="main--app">
-        {mQuery.matches ? <MobileSidebar/> : <Sidebar />}
+        {mQuery.matches ? <MobileSidebar /> : <Sidebar />}
         <div className="main--content">
           <Navbar />
           <div className="main--content--container">
-          <Outlet />
+            <Outlet />
           </div>
         </div>
       </div>
@@ -58,16 +58,12 @@ const Layout = () => {
 };
 
 const Welcome = () => {
-  return (
-      <Home/>
-  )
-}
+  return <Home />;
+};
 
 const NavigateErrors = () => {
-  return (
-      <AxiosError/>
-  )
-}
+  return <AxiosError />;
+};
 
 const router = createBrowserRouter([
   {
@@ -104,10 +100,6 @@ const router = createBrowserRouter([
         element: <DemoDash />,
       },
       {
-        path: "/site/upload/*",
-        element: <Upload />,
-      },
-      {
         path: "/site/about",
         element: <About />,
       },
@@ -122,11 +114,22 @@ const router = createBrowserRouter([
     path: "/error",
     element: <NavigateErrors />,
   },
+  {
+    path: "/upload/*",
+    element: <Upload />,
+  },
 ]);
 
 function App() {
   return (
     <div className="App">
+
+<ToastContainer 
+        className="toast--position"
+        autoClose={6000}
+        closeOnClick 
+        style={{width: "250px"}}
+        />
       <RouterProvider router={router} />
     </div>
   );

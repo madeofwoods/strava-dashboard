@@ -1,14 +1,20 @@
 import LineGraph from '../../components/LineGraph'
 import "./Graphs.css"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { DataContext } from "../../context/DataContextProvider"
 import demoData from "../../assets/data.json"
+import { BestEfforts } from '../../types/Types'
 
 export default function Graphs() {
-  const { stravaDataKey } = useContext(DataContext)
-  const [data, setData] = stravaDataKey
+  const { stravaDataKey, activeKey } = useContext(DataContext)
+  const [data] = stravaDataKey
+  const [, setActive] = activeKey
 
-  const getRunData = (data: any[]) => {
+  useEffect(() => {
+    setActive("Graphs")
+  }, [])
+
+  const getRunData = (data: BestEfforts[]) => {
 
     const runData = data.filter(data => data.best_efforts.length > 6).map((data) => ({ name: new Date(data.start_date), ["ten"]: data.best_efforts[6]?.moving_time }))
     return runData.length
