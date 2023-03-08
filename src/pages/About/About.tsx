@@ -25,6 +25,7 @@ import {
   secondBlockVariants,
 } from "./utils/FramerVaraints";
 import { handleHover, handleHoverEnd } from "./utils/Functions";
+import { useShowAndHideAnimation } from "../../utils/customHooks";
 
 const About = () => {
   const { ref: blockOne, inView: blockOneInView } = useInView({
@@ -66,49 +67,11 @@ const About = () => {
     }
   }, [blockOneInView]);
 
-  useEffect(() => {
-    if (blockTwoInView) {
-      animationTwo.start("visible");
-      textAnimationTwo.start("visible");
-    }
-    if (!blockTwoInView) {
-      animationTwo.start("hidden");
-      textAnimationTwo.start("hidden");
-    }
-  }, [blockTwoInView]);
-
-  useEffect(() => {
-    if (blockThreeInView) {
-      animationThree.start("visible");
-      textAnimationThree.start("visible");
-    }
-    if (!blockThreeInView) {
-      animationThree.start("hidden");
-      textAnimationThree.start("hidden");
-    }
-  }, [blockThreeInView]);
-
-  useEffect(() => {
-    if (blockFourInView) {
-      animationFour.start("visible");
-      textAnimationFour.start("visible");
-    }
-    if (!blockFourInView) {
-      animationFour.start("hidden");
-      textAnimationFour.start("hidden");
-    }
-  }, [blockFourInView]);
-
-  useEffect(() => {
-    if (blockFiveInView) {
-      animationFive.start("visible");
-      textAnimationFive.start("visible");
-    }
-    if (!blockFiveInView) {
-      animationFive.start("hidden");
-      textAnimationFive.start("hidden");
-    }
-  }, [blockFiveInView]);
+  useShowAndHideAnimation(blockOneInView, animation, textAnimation);
+  useShowAndHideAnimation(blockTwoInView, animationTwo, textAnimationTwo);
+  useShowAndHideAnimation(blockThreeInView, animationThree, textAnimationThree);
+  useShowAndHideAnimation(blockFourInView, animationFour, textAnimationFour);
+  useShowAndHideAnimation(blockFiveInView, animationFive, textAnimationFive);
 
   return (
     <div className="About">
