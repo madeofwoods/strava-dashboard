@@ -1,4 +1,5 @@
 import { createContext, useMemo, useState } from "react";
+import { BestEfforts } from "../types/Types";
 
 interface ContextProps {
   children: React.ReactNode;
@@ -8,11 +9,13 @@ interface mQueryType {
   matches: Boolean;
 }
 
+//Need to fix the context type if possible
+
 export const DataContext = createContext<any | null>(null);
 
 export default function DataContextProvider({ children }: ContextProps) {
-  const [name, setName] = useState<any>("");
-  const [stravaData, setStravaData] = useState<any>([]);
+  const [name, setName] = useState<string>("");
+  const [stravaData, setStravaData] = useState<BestEfforts[] | []>([]);
   const [kmToggle, setKmToggle] = useState<Boolean>(true);
   const [errorStatus, setErrorStatus] = useState<number>(444);
   const [mQuery, setMQuery] = useState<mQueryType>({

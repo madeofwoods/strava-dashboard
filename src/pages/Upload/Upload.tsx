@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { errorHandler } from "./utils";
 import { toast } from "react-toastify";
 import "./Upload.css";
+import { BestEfforts, UserData } from "../../types/Types";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -42,11 +43,11 @@ export default function Upload() {
       );
 
       return response.data;
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as AxiosError
       console.log("error getAccessTokens", error);
-      console.log("error getAccessTokens status", error.response.status);
-      // toastErrorHandler(error.response.status)
-      // setErrorStatus(error.response.status)
+      console.log("error getAccessTokens status", error?.response?.status);
+      // this is an alternative way to type the catch error. 
       //this post request is triggered twice in React.StrictMode -- an error always occurs the second time
     }
   };
@@ -69,27 +70,25 @@ export default function Upload() {
     }
   };
 
-  interface DataProps {
-    data: any;
-  }
 
-  const getBestEffortsAll = async (userData: any[], accessToken: string) => {
+  const getBestEffortsAll = async (userData: UserData[], accessToken: string) => {
     const endpoints = [];
+    console.log("userData", userData)
     for (let i = 0; i < numberOfRuns; i++) {
       endpoints.push(
         `https://www.strava.com/api/v3/activities/${userData[i].id}?include_all_efforts=true`
       );
     }
     try {
-      const response: DataProps[] = await axios.all(
+      const response = await axios.all(
         endpoints.map((endpoint) =>
           axios.get(endpoint, {
             headers: { Authorization: `Bearer ${accessToken}` },
           })
         )
       );
-
-      const getTheData = response.map((data) => data.data);
+      console.log("response", response)
+      const getTheData: BestEfforts[] = response.map((data) => data.data);
       return getTheData;
     } catch (error: any) {
       console.log("error getbestefforts", error);
@@ -102,7 +101,8 @@ export default function Upload() {
   const activate = async () => {
     try {
       const stravaAuthToken: string = getAuthToken(location.search);
-      const tokens: any = await getAccessTokens(stravaAuthToken);
+      const tokens = await getAccessTokens(stravaAuthToken);
+      console.log("tokens", tokens)
 
       const accessToken: string = await tokens.access_token;
       setName(`${tokens?.athlete.firstname} ${tokens?.athlete.lastname}`);

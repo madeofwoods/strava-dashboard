@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataContextProvider";
+import { BestEfforts } from "../types/Types";
 import { getMonth } from "../utils/TimeFunctions";
 
 const [month, monthNumeric] = getMonth();
 
-const getTotalMonthlyDistance = (data: any[], kmToggle: boolean): string => {
+const getTotalMonthlyDistance = (data: BestEfforts[], kmToggle: boolean): string => {
   const distances = data.map((data) => data.distance);
   const meters = Math.round(distances.reduce((a, b) => a + b, 0));
   const divisor = kmToggle ? 1000 : 1609.34
@@ -14,7 +15,7 @@ const getTotalMonthlyDistance = (data: any[], kmToggle: boolean): string => {
 };
 
 interface MonthProps {
-  data: any[];
+  data: BestEfforts[];
 }
 
 export default function DistanceMonth({ data }: MonthProps) {
@@ -23,7 +24,7 @@ export default function DistanceMonth({ data }: MonthProps) {
   const units = unitsKey
 
   const dataThisMonth = data.filter(
-    (run) => run.start_date.slice(0, 7) == `2023-${monthNumeric}`
+    (run) => String(run.start_date).slice(0, 7) == `2023-${monthNumeric}`
   );
 
   return (

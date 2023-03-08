@@ -98,7 +98,7 @@
   }
 
   .highlighted {
-    background-color: #08133e;
+    background-color: #142258;
     /* color:#a4a4e3; */
   }
   
@@ -107,7 +107,7 @@
   }
 
   .highlighted:hover {
-    background-color: #08133e;
+    background-color: #2f3b69;
   }
   
   .router--link {

@@ -10,8 +10,9 @@ import {
 } from "recharts";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { BestEfforts } from "../types/Types";
 
-const getRunData = (data: any[], distance: string, position: number) => {
+const getRunData = (data: BestEfforts[], distance: string, position: number) => {
   const runData = data
     .filter((data) => data.best_efforts.length > position)
     .map((data) => ({
@@ -23,12 +24,15 @@ const getRunData = (data: any[], distance: string, position: number) => {
 };
 
 interface PropTypes {
-  data: any[];
+  data: BestEfforts[];
   distance: string;
   position: number;
   minmax: number;
   label: string;
 }
+
+
+// The only any type I haven't been able to fix
 
 const LineGraph = ({
   data,
@@ -43,6 +47,7 @@ const LineGraph = ({
 
   useEffect(() => {
     setGraphData(getRunData(data, distance, position));
+    console.log("graphData", graphData)
   }, [data]);
 
   return (

@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataContextProvider";
+import { BestEfforts } from "../types/Types";
 import { secsToMins } from "../utils/TimeFunctions";
 
 interface LatestProps {
-  data: any[];
+  data: BestEfforts[];
 }
 export default function LatestActivity({ data }: LatestProps) {
   const {toggle, unitsKey} = useContext(DataContext)

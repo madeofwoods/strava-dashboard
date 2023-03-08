@@ -11,11 +11,14 @@ import { DataContext } from "../../context/DataContextProvider";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { useNavigate } from "react-router-dom";
 import jsonData from "../../assets/data.json";
+import { BestEfforts } from "../../types/Types";
+
+
 
 export default function Dashboard() {
   const { stravaDataKey, activeKey } = useContext(DataContext);
   const [data, ] = stravaDataKey;
-  const [dashboardData, setDashboardData] = useState(jsonData)
+  const [dashboardData, setDashboardData] = useState<BestEfforts[]>(jsonData)
   const [, setActive] = activeKey
   const navigate = useNavigate();
   const handleClick = (url: string) => {

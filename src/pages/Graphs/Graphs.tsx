@@ -3,6 +3,7 @@ import "./Graphs.css"
 import { useContext, useEffect } from "react"
 import { DataContext } from "../../context/DataContextProvider"
 import demoData from "../../assets/data.json"
+import { BestEfforts } from '../../types/Types'
 
 export default function Graphs() {
   const { stravaDataKey, activeKey } = useContext(DataContext)
@@ -13,7 +14,7 @@ export default function Graphs() {
     setActive("Graphs")
   }, [])
 
-  const getRunData = (data: any[]) => {
+  const getRunData = (data: BestEfforts[]) => {
 
     const runData = data.filter(data => data.best_efforts.length > 6).map((data) => ({ name: new Date(data.start_date), ["ten"]: data.best_efforts[6]?.moving_time }))
     return runData.length
