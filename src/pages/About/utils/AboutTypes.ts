@@ -4,3 +4,8 @@ export interface ImageBoolean {
     three: boolean,
     four: boolean
 }
+
+export interface ImageArrayInterface {
+    enum: number, 
+    img: string
+  }
