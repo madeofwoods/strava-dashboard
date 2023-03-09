@@ -25,6 +25,7 @@ export default function Dashboard() {
     navigate(url);
   };
 
+
   useEffect(() => {
     setActive(data?.length > 0 ? "Dashboard" : "Demo")
   }, [])

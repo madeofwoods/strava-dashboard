@@ -29,7 +29,7 @@ export default function Sidebar() {
       <div className="middle--and--bottom">
         <div className="sidebar--middle">
           <Link to={"/site/about"} className="router--link" >
-            <div className="middle--text" >About</div>
+            <div className={`middle--text ${active == "About" ? "highlighted" : "not--highlighted"}`} >About</div>
           </Link>
             <Link to={"/site/dash"} className="router--link" >
               <div className={`middle--text ${active == "Dashboard" || active == "Demo" ? "highlighted" : "not--highlighted"}`}  >{data?.length > 0 ? "Dashboard" : "Demo"}</div>

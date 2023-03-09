@@ -17,17 +17,28 @@ import {
 } from "../../assets/about";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
 import {
   framerImageVariants,
   framerTextVariants,
   secondBlockChildren,
   secondBlockVariants,
 } from "./utils/FramerVaraints";
-import { handleHover, handleHoverEnd } from "./utils/Functions";
 import { useShowAndHideAnimation } from "../../utils/customHooks";
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../../context/DataContextProvider";
+import { Image } from "../../types/Types";
+
+
 
 const About = () => {
+  const {activeKey} = useContext(DataContext);
+  const [, setActive] = activeKey;
+  const [listArray, setListArray] = useState([
+    {key: 1, id: "image--off", text: "Your total number of runs this year." },
+    {key: 2, id: "image--off", text: "Your total distance for the current year." },
+    {key: 3, id: "image--off", text: "Your total distance for the current month." },
+    {key: 4, id: "image--off", text: "Your last recorded run." },
+  ])
   const { ref: blockOne, inView: blockOneInView } = useInView({
     threshold: 0.2,
   });
@@ -45,6 +56,23 @@ const About = () => {
     threshold: 0.3,
   });
 
+
+  useEffect(() => {
+    setActive("About")
+  }, [])
+
+  const handleHoverOn = (listIndex:number) => {
+    const newArray = [...listArray]
+    newArray[listIndex].id = "image--on"
+    setListArray(newArray)
+  }
+
+  const handleHoverOff = (listIndex:number) => {
+    const newArray = [...listArray]
+    newArray[listIndex].id = "image--off"
+    setListArray(newArray)
+  }
+
   const animation = useAnimation();
   const textAnimation = useAnimation();
   const animationTwo = useAnimation();
@@ -55,17 +83,6 @@ const About = () => {
   const textAnimationFour = useAnimation();
   const animationFive = useAnimation();
   const textAnimationFive = useAnimation();
-
-  useEffect(() => {
-    if (blockOneInView) {
-      animation.start("visible");
-      textAnimation.start("visible");
-    }
-    if (!blockOneInView) {
-      animation.start("hidden");
-      textAnimation.start("hidden");
-    }
-  }, [blockOneInView]);
 
   useShowAndHideAnimation(blockOneInView, animation, textAnimation);
   useShowAndHideAnimation(blockTwoInView, animationTwo, textAnimationTwo);
@@ -142,29 +159,29 @@ const About = () => {
             >
               <motion.img
                 variants={secondBlockChildren}
-                onHoverStart={(e) => handleHover("image--one")}
-                onHoverEnd={(e) => handleHoverEnd("image--one")}
+                onHoverStart={(e) => handleHoverOn(Image.ONE)}
+                onHoverEnd={(e) => handleHoverOff(Image.ONE)}
                 className="timeline--image image--focus"
                 src={dashOne}
               />
               <motion.img
                 variants={secondBlockChildren}
-                onHoverStart={(e) => handleHover("image--two")}
-                onHoverEnd={(e) => handleHoverEnd("image--two")}
+                onHoverStart={(e) => handleHoverOn(Image.TWO)}
+                onHoverEnd={(e) => handleHoverOff(Image.TWO)}
                 className="timeline--image image--focus"
                 src={dashTwo}
               />
               <motion.img
                 variants={secondBlockChildren}
-                onHoverStart={(e) => handleHover("image--three")}
-                onHoverEnd={(e) => handleHoverEnd("image--three")}
+                onHoverStart={(e) => handleHoverOn(Image.THREE)}
+                onHoverEnd={(e) => handleHoverOff(Image.THREE)}
                 className="timeline--image image--focus"
                 src={dashThree}
               />
               <motion.img
                 variants={secondBlockChildren}
-                onHoverStart={(e) => handleHover("image--four")}
-                onHoverEnd={(e) => handleHoverEnd("image--four")}
+                onHoverStart={(e) => handleHoverOn(Image.FOUR)}
+                onHoverEnd={(e) => handleHoverOff(Image.FOUR)}
                 className="timeline--image image--focus"
                 src={dashFour}
               />
@@ -180,14 +197,9 @@ const About = () => {
                 Here you can view:
               </p>
               <ul className="timeline--list">
-                <li id="image--one">Your total number of runs this year.</li>
-                <li id="image--two">
-                  Your total distance for the current year.
-                </li>
-                <li id="image--three">
-                  Your total distance for the current month.
-                </li>
-                <li id="image--four">Your last recorded run.</li>
+                {listArray.map((item) => (
+                  <li key={item.key} id={item.id}>{item.text}</li>
+                ))}
               </ul>
             </motion.div>
           </div>

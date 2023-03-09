@@ -1,11 +1,12 @@
+import { AnimationControls } from "framer-motion";
 import { useEffect } from "react";
 
 export const useShowAndHideAnimation = (
   blockOneInView: boolean,
   // add correct type, AnimationControls was suggested
-  animation: any,
+  animation: AnimationControls,
   // add correct type, AnimationControls was suggested
-  textAnimation: any
+  textAnimation: AnimationControls
 ) => {
   useEffect(() => {
     if (blockOneInView) {
