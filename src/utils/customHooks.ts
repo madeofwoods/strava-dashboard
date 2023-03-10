@@ -3,9 +3,7 @@ import { useEffect } from "react";
 
 export const useShowAndHideAnimation = (
   blockOneInView: boolean,
-  // add correct type, AnimationControls was suggested
   animation: AnimationControls,
-  // add correct type, AnimationControls was suggested
   textAnimation: AnimationControls
 ) => {
   useEffect(() => {
