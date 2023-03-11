@@ -2,20 +2,18 @@ import { AnimationControls } from "framer-motion";
 import { useEffect } from "react";
 
 export const useShowAndHideAnimation = (
-  blockOneInView: boolean,
-  // add correct type, AnimationControls was suggested
+  blockInView: boolean,
   animation: AnimationControls,
-  // add correct type, AnimationControls was suggested
   textAnimation: AnimationControls
 ) => {
   useEffect(() => {
-    if (blockOneInView) {
+    if (blockInView) {
       animation.start("visible");
       textAnimation.start("visible");
     }
-    if (!blockOneInView) {
+    if (!blockInView) {
       animation.start("hidden");
       textAnimation.start("hidden");
     }
-  }, [blockOneInView]);
+  }, [blockInView]);
 };

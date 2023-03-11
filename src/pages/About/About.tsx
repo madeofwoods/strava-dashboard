@@ -12,20 +12,20 @@ import {
   dashTable,
   keepOnTrack,
 } from "../../assets/about";
-import { useAnimation } from "framer-motion";
+import { AnimationControls, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
 import { useShowAndHideAnimation } from "../../utils/customHooks";
 import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContextProvider";
-
 import AboutBlock from "../../components/About/AboutBlock";
+import AboutHeader from "../../components/About/AboutHeader";
+import FirstLine from "../../components/About/FirstLine";
 
 const About = () => {
   const { activeKey } = useContext(DataContext);
   const [, setActive] = activeKey;
 
-  // react intersection obsercer refs
+  // react intersection observer refs
 
   const { ref: blockOne, inView: blockOneInView } = useInView({
     threshold: 0.2,
@@ -52,7 +52,7 @@ const About = () => {
 
   const animation = useAnimation();
   const textAnimation = useAnimation();
-  const animationTwo = useAnimation();
+  const animationTwo: AnimationControls = useAnimation();
   const textAnimationTwo = useAnimation();
   const animationThree = useAnimation();
   const textAnimationThree = useAnimation();
@@ -77,35 +77,41 @@ const About = () => {
       textAnimation: textAnimation,
       img: aboutStrava,
       title: "Connect with Strava",
-      content: `Access all your running data by logging into Strava. Login to Strava
-    via the homepage, or by clicking{" "}
-   ${(
-     <span
-       className="about--link"
-       onClick={() => handleLogin(clientId, scope, redirectUrl)}
-     >
-       Strava
-     </span>
-   )}
-    on the menu. This is done by making an oAuth2 API request to the
-    Strava API.`,
+      content: (
+        <>
+          Access all your running data by logging into Strava. Login to Strava
+          via the homepage, or by clicking{" "}
+          <span
+            className="about--link"
+            onClick={() => handleLogin(clientId, scope, redirectUrl)}
+          >
+            Strava
+          </span>{" "}
+          on the menu. This is done by making an oAuth2 API request to the
+          Strava API.
+        </>
+      ),
     },
 
     {
       id: 2,
-      className: "timeline--image timeline--image--table",
       distance: "5km",
       block: blockTwo,
       animation: animationTwo,
+      fourImage: true,
       textAnimation: textAnimationTwo,
       img: keepOnTrack,
       title: "Keep on track",
-      content:
-        "Get up-to-date information on your training so far this year. Here you can view:",
+      content: (<>Get up-to-date information on your training so far this year. Here you can view:
+      <ul className="timeline--list">
+        <li>Your total number of runs this year.</li>
+        <li>Your total distance for the current year.</li>
+        <li>Your total distance for the current month.</li>
+        <li>Your last recorded run.</li>
+        </ul></>),
     },
     {
       id: 3,
-      className: "timeline--image timeline--image--table",
       distance: "10km",
       block: blockThree,
       animation: animationThree,
@@ -141,23 +147,9 @@ const About = () => {
 
   return (
     <div className="About">
-      <div className="about--opening">
-        <h1 className="about--title">Your Personal Training Partner</h1>
-        <div className="title--description">
-          The Strava Dashboard is a web application to help visualize all of
-          your running data in one place. Get access to information they store
-          but don't share with you on their application. For example, your
-          fastest times over 1km and 5km for each run.
-        </div>
-
-        <h1 className="about--sub--title">How it works</h1>
-      </div>
+      <AboutHeader/>
       <div className="timeline">
-        <div className="timeline--element">
-          <div className="timeline--first--line--container">
-            <div className="timeline--first--line"></div>
-          </div>
-        </div>
+        <FirstLine/>
 
         {timeLineElements.map((item) => (
           <AboutBlock
@@ -166,12 +158,12 @@ const About = () => {
             distance={item.distance}
             block={item.block}
             animation={item.animation}
+            fourImage={item.fourImage}
             textAnimation={item.textAnimation}
             img={item.img}
-          >
-            <h2 className="timeline--title">{item.title}</h2>
-            <p className="timeline--description">{item.content}</p>
-          </AboutBlock>
+            title={item.title}
+            content ={item.content}
+          />
         ))}
       </div>
     </div>
