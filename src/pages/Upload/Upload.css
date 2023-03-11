@@ -8,6 +8,11 @@
     background-color: rgb(9, 11, 33);
 }
 
+.mountain--svg, .blur--svg {
+    stroke-dasharray: 691.1864013671875;
+    animation: animate 2s linear, fade 3s ease-out infinite 2s ;
+}
+
 .loading--text {
     color: rgb(135, 203, 218);
     font-size: 40px;

@@ -17,8 +17,6 @@
   color: rgb(228, 148, 148);
   cursor: pointer;
   margin-left: 2px;
-
-  /* border-bottom: 1px solid white; */
 }
 
 .home--title {
@@ -28,34 +26,6 @@
 .home--text {
   font-size: 16px;
   color: #cbced0;
-}
-
-.input--name::placeholder {
-  opacity: 1;
-  color: rgb(228, 148, 148);
-}
-
-.input--name:hover {
-  color: #d37373;
-}
-
-.input--name:focus {
-  border: none;
-  outline: none;
-  border-bottom: 1px solid white;
-  color: #d37373;
-}
-
-.mountain--svg,
-.blur--svg {
-  stroke-dasharray: 691.1864013671875;
-  animation: animate 2s linear, fade 3s ease-out infinite 2s;
-}
-
-.svg--home {
-  z-index: 0;
-  position: absolute;
-  top: 30px;
 }
 
 @keyframes animate {
@@ -94,7 +64,6 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  /* background-color: rgb(35, 129, 129); */
   color: white;
   z-index: 3;
 }
@@ -166,7 +135,8 @@
   background: linear-gradient(-45deg, #cbccd1, #9c9ca2, #d0d0d4, #9fa0a1);
   background-size: 300%;
 }
-/* Hero */
+
+/* Perspective image */
 
 .image--container {
   height: 50%;

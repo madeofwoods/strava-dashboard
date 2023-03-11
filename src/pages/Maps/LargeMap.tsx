@@ -5,16 +5,18 @@ import { DataContext } from "../../context/DataContextProvider"
 import demoData from "../../assets/data.json"
 
 export default function LargeMap() {
-  const { stravaDataKey, activeKey } = useContext(DataContext)
+  const { stravaDataKey, activeKey, dataIsLoadedKey } = useContext(DataContext)
   const [data] = stravaDataKey
   const [, setActive] = activeKey
+  const [dataIsLoaded] = dataIsLoadedKey
 
   useEffect(() => {
     setActive("Maps")
   }, [])
+
   return (
     <div className="large--map widget">
-        <Maps zoom={13} data={data.length > 0 ? data : demoData} />
+        <Maps zoom={13} data={dataIsLoaded ? data : demoData} />
     </div>
   )
 }
