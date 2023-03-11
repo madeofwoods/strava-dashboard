@@ -64,3 +64,9 @@
     gap:3px;
   }
 }
+
+@media (max-width:250px) {
+  .navbar--title {
+    display: none;
+  }
+}

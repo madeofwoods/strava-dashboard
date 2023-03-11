@@ -7,6 +7,13 @@ export interface DataProps {
   };
 }
 
+export enum Image {
+  ONE,
+  TWO,
+  THREE,
+  FOUR,
+}
+
 export interface ActivityBase {
   id: number | string;
   resource_state: number;

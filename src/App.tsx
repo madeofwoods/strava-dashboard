@@ -19,6 +19,7 @@ import Error from "./pages/ErrorPages/Error";
 import AxiosError from "./pages/ErrorPages/AxiosError";
 import { useContext, useEffect, useState } from "react";
 import MobileSidebar from "./components/Sidebar/MobileSidebar";
+import About from "./pages/About/About";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
@@ -30,7 +31,7 @@ const Layout = () => {
   const { mediaKey } = useContext(DataContext);
   const [mQuery, setMQuery] = mediaKey;
 
-  const isMobile = window.matchMedia("(max-width: 700px)");
+  const isMobile = window.matchMedia("(max-width: 860px)")
 
   function handleMediaChange(e: MediaQueryListEvent) {
     setMQuery({ matches: e.matches });
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: "/site/demo",
         element: <DemoDash />,
+      },
+      {
+        path: "/site/about",
+        element: <About />,
       },
     ],
   },
