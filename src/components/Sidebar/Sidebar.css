@@ -1,4 +1,4 @@
-.sidebar, .mobile--sidebar {
+.sidebar {
     background-color: #232e5a;
     color: white;
     flex: 1;
@@ -11,9 +11,7 @@
     /* justify-content: stretch; */
   }
 
-  .mobile--sidebar {
-    background-color: #572274;
-  }
+
   
   .middle--and--bottom {
     display: flex;

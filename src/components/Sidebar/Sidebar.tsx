@@ -1,18 +1,17 @@
 import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined";
-import CalendarViewMonthOutlinedIcon from "@mui/icons-material/CalendarViewMonthOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import "./Sidebar.css"
 import { handleLogin, clientId, scope, redirectUrl } from "../../utils/LoginFunctions";
 
 
 export default function Sidebar() {
-  const { nameKey, stravaDataKey, activeKey } = useContext(DataContext);
+  const { nameKey, activeKey, dataIsLoadedKey } = useContext(DataContext);
   const [name] = nameKey;
-  const [data] = stravaDataKey;
+  const [dataIsLoaded] = dataIsLoadedKey
   const [active] = activeKey
 
  
@@ -20,7 +19,7 @@ export default function Sidebar() {
     <div className="sidebar">
       <hr className="sidebar--hr" />
       <div className="sidebar--top">
-        <Link to={data.length > 0 ? "/site/dash" : "/site/demo"} className="router--link">
+        <Link to={dataIsLoaded ? "/site/dash" : "/site/demo"} className="router--link">
           <h2 className="sidebar--title">Dash</h2>
         </Link>
         <div className="sidebar--name">{name}</div>
@@ -32,7 +31,7 @@ export default function Sidebar() {
             <div className={`middle--text ${active == "About" ? "highlighted" : "not--highlighted"}`} >About</div>
           </Link>
             <Link to={"/site/dash"} className="router--link" >
-              <div className={`middle--text ${active == "Dashboard" || active == "Demo" ? "highlighted" : "not--highlighted"}`}  >{data?.length > 0 ? "Dashboard" : "Demo"}</div>
+              <div className={`middle--text ${active == "Dashboard" || active == "Demo" ? "highlighted" : "not--highlighted"}`}  >{dataIsLoaded ? "Dashboard" : "Demo"}</div>
             </Link>
           <div onClick={e => handleLogin(clientId, scope, redirectUrl)} className="middle--text" >
             Strava

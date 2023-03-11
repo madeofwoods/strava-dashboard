@@ -16,10 +16,11 @@ import { BestEfforts } from "../../types/Types";
 
 
 export default function Dashboard() {
-  const { stravaDataKey, activeKey } = useContext(DataContext);
-  const [data, ] = stravaDataKey;
-  const [dashboardData, setDashboardData] = useState<BestEfforts[]>(jsonData)
-  const [, setActive] = activeKey
+  const { stravaDataKey, activeKey, dataIsLoadedKey } = useContext(DataContext);
+  const [data] = stravaDataKey;
+  const [dashboardData, setDashboardData] = useState<BestEfforts[]>(jsonData);
+  const [, setActive] = activeKey;
+  const [dataIsLoaded] = dataIsLoadedKey;
   const navigate = useNavigate();
   const handleClick = (url: string) => {
     navigate(url);
@@ -27,7 +28,7 @@ export default function Dashboard() {
 
 
   useEffect(() => {
-    setActive(data?.length > 0 ? "Dashboard" : "Demo")
+    setActive(dataIsLoaded ? "Dashboard" : "Demo")
   }, [])
 
   useEffect(() => {

@@ -16,12 +16,12 @@ interface Errors {
 }
 
 export default function Upload() {
-  const { stravaDataKey, nameKey, axiosError } = useContext(DataContext);
+  const { stravaDataKey, nameKey, dataIsLoadedKey } = useContext(DataContext);
   const [stravaData, setStravaData] = stravaDataKey;
   const [, setName] = nameKey;
+  const [dataIsLoaded] = dataIsLoadedKey;
   const numberOfRuns = 15;
   const navigate = useNavigate();
-  const [, setErrorStatus] = axiosError;
 
   const toastErrorHandler = (errorStatus: number) => {
     const errorMessage = errorHandler(errorStatus);
@@ -65,7 +65,6 @@ export default function Upload() {
     } catch (error: any) {
       console.log("error getUserData", error);
       console.log("status", error.response.status);
-      setErrorStatus(error.response.status);
       toastErrorHandler(error.response.status);
     }
   };
@@ -93,7 +92,6 @@ export default function Upload() {
     } catch (error: any) {
       console.log("error getbestefforts", error);
       console.log("status", error.response.status);
-      setErrorStatus(error.response.status);
       toastErrorHandler(error.response.status);
     }
   };
@@ -133,10 +131,10 @@ export default function Upload() {
   }, []);
 
   useEffect(() => {
-    if (stravaData.length > 0)  {navigate("/site/dash");
+    if (dataIsLoaded)  {navigate("/site/dash");
     }
     
-  }, [stravaData]);
+  }, [dataIsLoaded]);
 
   useEffect(() => {
     setTimeout(() => {
