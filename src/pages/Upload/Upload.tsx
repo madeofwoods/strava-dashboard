@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "./utils";
@@ -17,7 +17,7 @@ interface Errors {
 
 export default function Upload() {
   const { stravaDataKey, nameKey, dataIsLoadedKey } = useContext(DataContext);
-  const [stravaData, setStravaData] = stravaDataKey;
+  const [, setStravaData] = stravaDataKey;
   const [, setName] = nameKey;
   const [dataIsLoaded] = dataIsLoadedKey;
   const numberOfRuns = 15;
@@ -46,7 +46,6 @@ export default function Upload() {
     } catch (err) {
       const error = err as AxiosError
       console.log("error getAccessTokens", error);
-      console.log("error getAccessTokens status", error?.response?.status);
       // this is an alternative way to type the catch error. 
       //this post request is triggered twice in React.StrictMode -- an error always occurs the second time
     }
@@ -64,7 +63,6 @@ export default function Upload() {
       return response.data;
     } catch (error: any) {
       console.log("error getUserData", error);
-      console.log("status", error.response.status);
       toastErrorHandler(error.response.status);
     }
   };
@@ -72,7 +70,6 @@ export default function Upload() {
 
   const getBestEffortsAll = async (userData: UserData[], accessToken: string) => {
     const endpoints = [];
-    console.log("userData", userData)
     for (let i = 0; i < numberOfRuns; i++) {
       endpoints.push(
         `https://www.strava.com/api/v3/activities/${userData[i].id}?include_all_efforts=true`
@@ -86,12 +83,10 @@ export default function Upload() {
           })
         )
       );
-      console.log("response", response)
       const getTheData: BestEfforts[] = response.map((data) => data.data);
       return getTheData;
     } catch (error: any) {
       console.log("error getbestefforts", error);
-      console.log("status", error.response.status);
       toastErrorHandler(error.response.status);
     }
   };
@@ -100,7 +95,6 @@ export default function Upload() {
     try {
       const stravaAuthToken: string = getAuthToken(location.search);
       const tokens = await getAccessTokens(stravaAuthToken);
-      console.log("tokens", tokens)
 
       const accessToken: string = await tokens.access_token;
       setName(`${tokens?.athlete.firstname} ${tokens?.athlete.lastname}`);
@@ -114,13 +108,13 @@ export default function Upload() {
         });
         navigate("/site/dash")
       }
-      console.log(user);
       const bestEfforts = await getBestEffortsAll(user, accessToken);
       setStravaData(bestEfforts);
     } catch (error: any) {
       console.log("err activate", error);
     }
   };
+
   useEffect(() => {
     toast("Loading Data", {
       className: "toast--loading",
@@ -136,6 +130,8 @@ export default function Upload() {
     
   }, [dataIsLoaded]);
 
+
+// Users who navigate back to the strava upload url get stuck on this page. Not easy to do, since it is not added to the browser history. This user effect resolves that.
   useEffect(() => {
     setTimeout(() => {
         if (window.location.href.includes("upload")){
@@ -144,8 +140,7 @@ export default function Upload() {
             className: "toast--error",
             autoClose: 3000,
             progressClassName: "toast--loading--progress",
-          });
-        console.log(window.location.href)}
+          });}
       }, 5000)
   },[])
 

@@ -5,9 +5,6 @@ import MobileSidebar from "../components/Sidebar/MobileSidebar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { DataContext } from "../context/DataContextProvider";
 
-interface mQueryType {
-    matches: Boolean;
-  }
   
    const Layout = () => {
     const { mediaKey } = useContext(DataContext);

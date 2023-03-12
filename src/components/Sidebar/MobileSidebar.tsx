@@ -4,19 +4,11 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import CloudUploadTwoToneIcon from "@mui/icons-material/CloudUploadTwoTone";
 import DashboardTwoToneIcon from "@mui/icons-material/DashboardTwoTone";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../../context/DataContextProvider";
 import "./MobileSidebar.css";
+import { handleLogin, clientId, scope, redirectUrl } from "../../utils/LoginFunctions";
 
-const clientId: string = import.meta.env.VITE_CLIENT_ID;
-const scope: string = "activity:read_all";
-const redirectUrl = import.meta.env.VITE_REDIRECT_URL;
-
-const handleLogin = (): void => {
-  (
-    window as Window
-  ).location = `http://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=${scope}`;
-};
 
 const MobileSidebar = () => {
   const { menuKey, activeKey } = useContext(DataContext);
@@ -32,7 +24,7 @@ const MobileSidebar = () => {
                 <DashboardTwoToneIcon className="mobile--icon" />
               </div>
             </Link>
-          <div onClick={handleLogin} className="mobile--middle--text">
+          <div onClick={() => handleLogin(clientId, scope, redirectUrl)} className="mobile--middle--text">
             <CloudUploadTwoToneIcon className="mobile--icon" />
           </div>
         </div>

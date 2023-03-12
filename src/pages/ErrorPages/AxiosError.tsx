@@ -1,20 +1,14 @@
-// import React, { useContext } from "react";
+
 import { DataContext } from "../../context/DataContextProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Error.css";
 import { errorHandler } from "./utils";
 
 export default function AxiosError() {
-  const [mouseOver, setMouseOver] = useState<Boolean>(false);
+  const [mouseOver, setMouseOver] = useState<boolean>(false);
   const { axiosError } = useContext(DataContext);
-  const [errorStatus, setErrorStatus] = axiosError;
-
-  //   useEffect(()=> {
-  //     setErrorStatus(404)
-  //   },[])
-
-  //   console.log(errorHandler(429))
+  const [errorStatus] = axiosError;
   console.log("axiosError", errorStatus);
 
   const navigate = useNavigate();

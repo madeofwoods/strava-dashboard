@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "../pages/About/About";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import DemoDash from "../pages/Dashboard/DemoDash";
 import AxiosError from "../pages/ErrorPages/AxiosError";
 import Error from "../pages/ErrorPages/Error";
 import Graphs from "../pages/Graphs/Graphs";
@@ -26,8 +25,8 @@ const router = createBrowserRouter([
       errorElement: <Error />,
       children: [
         {
-          path: "/site",
-          element: <DemoDash />,
+          path: "/site/",
+          element: <Dashboard />,
         },
         {
           path: "/site/dash",
@@ -44,10 +43,6 @@ const router = createBrowserRouter([
         {
           path: "/site/graphs",
           element: <Graphs />,
-        },
-        {
-          path: "/site/demo",
-          element: <DemoDash />,
         },
         {
           path: "/site/about",

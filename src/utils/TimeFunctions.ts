@@ -12,12 +12,3 @@ export const getMonth = (): string[] => {
   const month = date.toLocaleString("default", { month: "long" });
   return [month, monthNumeric];
 };
-
-//   export const secondsToMins = (time:number):string => {
-//     const timeRounded = Math.round(time)
-//     const mins = String(Math.floor(time / 60))
-//     const seconds = String(timeRounded % 60).padStart(2, "0")
-//     const minsAndSeconds = mins + ":" + seconds
-
-//     return minsAndSeconds
-// }

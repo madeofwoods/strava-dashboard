@@ -1,11 +1,9 @@
-// import React, { useContext } from "react";
-// import { DataContext } from "../../context/DataContextProvider";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Error.css";
 
 export default function Error() {
-  const [mouseOver, setMouseOver] = useState<Boolean>(false)
+  const [mouseOver, setMouseOver] = useState<boolean>(false)
   const navigate = useNavigate()
   const handleClick = () => {
     navigate("/site")
