@@ -31,6 +31,7 @@ interface PropTypes {
   label: string;
 }
 
+const format = (time: Date) => moment(time).format("DD MMM")
 
 // The only any type I haven't been able to fix
 
@@ -47,7 +48,6 @@ const LineGraph = ({
 
   useEffect(() => {
     setGraphData(getRunData(data, distance, position));
-    console.log("graphData", graphData)
   }, [data]);
 
   return (

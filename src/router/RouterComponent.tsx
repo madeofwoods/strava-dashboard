@@ -33,6 +33,10 @@ const router = createBrowserRouter([
           element: <Dashboard />,
         },
         {
+          path: "/site/demo",
+          element: <Dashboard />,
+        },
+        {
           path: "/site/tables",
           element: <Tables />,
         },
