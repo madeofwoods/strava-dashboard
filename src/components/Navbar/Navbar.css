@@ -3,13 +3,12 @@
   width: 100vw;
   height: 40px;
   background-color: #232e5a;
-  /* background-color: #d75531; */
+  background-color: #080f29;
   top: 0;
   left: 0;
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 7fr 1fr;
-  /* grid-column-gap: 5px; */
   justify-items: center;
   z-index: 4;
   padding: 0px 30px;
@@ -61,11 +60,11 @@
 
   .km--miles {
     font-size: 10px;
-    gap:3px;
+    gap: 3px;
   }
 }
 
-@media (max-width:250px) {
+@media (max-width: 250px) {
   .navbar--title {
     display: none;
   }

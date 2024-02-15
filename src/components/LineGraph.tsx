@@ -1,13 +1,4 @@
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { BestEfforts } from "../types/Types";
@@ -31,32 +22,19 @@ interface PropTypes {
   label: string;
 }
 
-
 // The only any type I haven't been able to fix
 
-const LineGraph = ({
-  data,
-  distance,
-  position,
-  minmax,
-  label,
-}: PropTypes) => {
-  const [graphData, setGraphData] = useState<any[]>(
-    getRunData(data, distance, 2)
-  );
+const LineGraph = ({ data, distance, position, minmax, label }: PropTypes) => {
+  const [graphData, setGraphData] = useState<any[]>(getRunData(data, distance, 2));
 
   useEffect(() => {
     setGraphData(getRunData(data, distance, position));
-    console.log("graphData", graphData)
   }, [data]);
 
   return (
     <div className="inner--graph">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          // title='Fastest 5km time each run'
-          // width={500}
-          // height={300}
           data={graphData}
           margin={{
             top: 25,
@@ -66,18 +44,13 @@ const LineGraph = ({
           }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#323236" />
-          <XAxis
-            dataKey="name"
-            tickFormatter={(time) => moment(time).format("DD MMM")}
-          />
+          <XAxis dataKey="name" tickFormatter={(time) => moment(time).format("DD MMM")} />
           <YAxis
             domain={[`dataMin - ${minmax}`, `dataMax + ${minmax}`]}
             tickCount={8}
             tickFormatter={(time) => {
               const duration = moment.duration(time, "seconds");
-              return `${duration.minutes()}:${String(
-                duration.seconds()
-              ).padStart(2, "0")}`;
+              return `${duration.minutes()}:${String(duration.seconds()).padStart(2, "0")}`;
             }}
           />
           <Tooltip
@@ -85,13 +58,7 @@ const LineGraph = ({
             labelFormatter={(value) => moment(value).format("DD MMM")}
             formatter={(value) => {
               const duration = moment.duration(Number(value), "seconds");
-              return [
-                `${duration.minutes()}:${String(duration.seconds()).padStart(
-                  2,
-                  "0"
-                )}`,
-                label,
-              ];
+              return [`${duration.minutes()}:${String(duration.seconds()).padStart(2, "0")}`, label];
             }}
           />
           <Legend />
@@ -102,7 +69,6 @@ const LineGraph = ({
             stroke="#8884d8"
             activeDot={{ r: 5 }}
           />
-          {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
         </LineChart>
       </ResponsiveContainer>
     </div>

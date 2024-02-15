@@ -19,7 +19,8 @@ export default function AxiosError() {
 
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/site");
+    console.log("click");
+    navigate("/site/dash");
   };
 
   const handleMouse = () => {
@@ -32,13 +33,7 @@ export default function AxiosError() {
   return (
     <div className="Home">
       <div className="svg--error">
-        <svg
-          width="476"
-          height="366"
-          viewBox="0 0 276 166"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="476" height="366" viewBox="0 0 276 166" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             className="mountain--svg--error"
             d="M96 154H14L101 45L116 65L151 19L164 40L184 13L263 154H96Z"
@@ -64,16 +59,8 @@ export default function AxiosError() {
               colorInterpolationFilters="sRGB"
             >
               <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="5"
-                result="effect1_foregroundBlur_1_5"
-              />
+              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+              <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1_5" />
             </filter>
           </defs>
         </svg>

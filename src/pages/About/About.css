@@ -6,7 +6,8 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  background-color: #07021c;
+  background-color: #160c3d;
+  background-color: #1d2446;
   color: #bbbabc;
   font-size: 20px;
   padding: 40px 0px;
@@ -243,17 +244,23 @@
 }
 
 @media (max-width: 500px) {
-    .about--title, .title--description, .timeline--element {
-        max-width: 85vw;
-    }
+  .about--title,
+  .title--description,
+  .timeline--element {
+    max-width: 85vw;
+  }
 
-    .about--title, .about--sub--title, .timeline--title {
-        font-size: 25px;
-    }
-    .title--description, .timeline--description, .timeline--list {
-        font-size: 15px;
-        line-height: 25px;
-    }
+  .about--title,
+  .about--sub--title,
+  .timeline--title {
+    font-size: 25px;
+  }
+  .title--description,
+  .timeline--description,
+  .timeline--list {
+    font-size: 15px;
+    line-height: 25px;
+  }
 
   .timeline--image--container {
     display: grid;
@@ -261,7 +268,8 @@
     gap: 10px;
     width: 180px;
   }
-  .timeline--line, .timeline--first--line {
+  .timeline--line,
+  .timeline--first--line {
     display: none;
   }
 
@@ -279,7 +287,7 @@
   }
 
   .timeline--block {
-    top:0;
+    top: 0;
     align-items: center;
   }
 
@@ -291,14 +299,15 @@
     left: 0px;
   }
 
-  .timeline--block, .timeline--text {
+  .timeline--block,
+  .timeline--text {
     width: 100%;
     align-items: center;
   }
 
   .timeline--image {
     margin: auto;
-}
+  }
   .timeline--image--table {
     width: 80%;
   }
@@ -309,24 +318,26 @@
 }
 
 #image--off {
-  color:#bbbabc;
+  color: #bbbabc;
 }
-
 
 @media (max-width: 300px) {
-
-    .about--title, .about--sub--title, .timeline--title {
-        font-size: 20px;
-    }
-    .title--description, .timeline--description, .timeline--list {
-        font-size: 12px;
-        line-height: 22px;
-    }
+  .about--title,
+  .about--sub--title,
+  .timeline--title {
+    font-size: 20px;
+  }
+  .title--description,
+  .timeline--description,
+  .timeline--list {
+    font-size: 12px;
+    line-height: 22px;
+  }
 }
 
-@media (max-width:240px) {
-    .timeline--image--container {
-        align-items: center;
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 240px) {
+  .timeline--image--container {
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
 }
