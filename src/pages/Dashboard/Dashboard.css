@@ -1,6 +1,5 @@
 /* A Css file to store the stylings for the dashboard and smaller widgets */
 
-
 /* TEST */
 
 .Dash {
@@ -18,7 +17,7 @@
 .dashboard {
   padding: 15px;
   height: 100%;
-  max-width: 1500px;
+  /* max-width: 2000px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px;
@@ -175,7 +174,11 @@
 }
 
 /* Media Queries */
-
+@media (min-width: 1500px) {
+  .dashboard {
+    grid-auto-rows: auto;
+  }
+}
 @media (max-width: 1200px) {
   .dashboard {
     grid-template-columns: repeat(2, 1fr);
@@ -258,19 +261,17 @@
     height: 100%;
   }
 
-  .open--icon  {
+  .open--icon {
     left: 90%;
   }
 
   .small--widget--number {
     font-size: 50px;
   }
-  
-  
 }
 
 @media (max-width: 300px) {
-  .open--icon  {
+  .open--icon {
     left: 85%;
   }
 
@@ -288,6 +289,6 @@
   }
 
   .latest--boxes {
-    gap:5px
+    gap: 5px;
   }
 }
